@@ -1,0 +1,13 @@
+{
+  "enabled": false,
+  "cut_note": "",
+  "figures": {},
+  "cities": {
+    "Cali": {},
+    "Pereira": {},
+    "Quibdó": {},
+    "Manizales": {},
+    "Armenia": {},
+    "Popayán": {}
+  }
+}

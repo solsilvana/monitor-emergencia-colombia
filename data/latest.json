@@ -1,0 +1,960 @@
+{
+  "meta": {
+    "source": "Economía para la Pipol",
+    "source_url": "https://www.economiaparalapipol.com/interactivos/mapa-ayuda-colombia/",
+    "cut": "11 de agosto de 2026, 4:00 p. m. · Reporte Consolidado No. 14",
+    "downloaded_at": "2026-08-13T18:34:54.963899+00:00",
+    "status": "preliminar"
+  },
+  "event": {
+    "lugar": "San José del Palmar, Chocó",
+    "lat": 4.8944,
+    "lon": -76.2261,
+    "magnitud": "7,4",
+    "hora": "7:34 a. m.",
+    "fecha": "10 de agosto de 2026"
+  },
+  "figures": {
+    "fallecidos": 188,
+    "heridos": 1677,
+    "heridos_pais": 2595,
+    "colapsos": 243,
+    "alerta_roja": 5,
+    "aeropuertos": 3,
+    "corte": "11 de agosto de 2026, 4:00 p. m. · Reporte Consolidado No. 14"
+  },
+  "cities": [
+    {
+      "name": "Cali",
+      "department": "Valle del Cauca",
+      "alert": "roja",
+      "lat": 3.4516,
+      "lon": -76.532,
+      "deaths": 95,
+      "injured": 997,
+      "collapsed": 56,
+      "missing": 180,
+      "trapped": 239,
+      "summary": "La ciudad con más víctimas mortales: 95 fallecidos y 997 heridos. 87 personas rescatadas y red hospitalaria en alerta roja.",
+      "needs": [
+        [
+          "💧",
+          "Agua potable",
+          "Bolsas y botellas."
+        ],
+        [
+          "🥫",
+          "Alimentos no perecederos",
+          "Mercados y enlatados."
+        ],
+        [
+          "⛺",
+          "Carpas, colchonetas y mantas",
+          "Para personas sin lugar donde dormir."
+        ],
+        [
+          "🧼",
+          "Elementos de higiene y protección",
+          "Kits de aseo, papel higiénico, tapabocas, guantes, gafas de protección y toallas."
+        ],
+        [
+          "🔦",
+          "Elementos para atender la emergencia",
+          "Palas, linternas, cascos de protección y bolsas resistentes para residuos."
+        ],
+        [
+          "🐶",
+          "Alimentos para perros y gatos",
+          "Para animales afectados por la emergencia."
+        ],
+        [
+          "🚨",
+          "6 equipos USAR adicionales",
+          "Solicitados al Gobierno Nacional y a las demás capitales."
+        ]
+      ],
+      "source": "Alcaldía de Cali · Alcalde A. Eder (cuenta oficial)"
+    },
+    {
+      "name": "Pereira",
+      "department": "Risaralda",
+      "alert": "roja",
+      "lat": 4.8087,
+      "lon": -75.6906,
+      "deaths": 79,
+      "injured": 278,
+      "collapsed": 92,
+      "missing": 37,
+      "trapped": 15,
+      "summary": "Segunda ciudad con más víctimas: 79 fallecidos. Calamidad pública declarada, 6 albergues abiertos y 267 rescatistas desplegados.",
+      "needs": [
+        [
+          "⛑️",
+          "Equipos de búsqueda y rescate",
+          "Para operaciones en estructuras colapsadas y atención de personas atrapadas."
+        ],
+        [
+          "🏥",
+          "Apoyo a la red hospitalaria",
+          "Ante los daños registrados en infraestructura de salud."
+        ],
+        [
+          "🩸",
+          "Donación de sangre",
+          "Requerida por el Hemocentro del Café y Tolima para atender a las personas heridas."
+        ]
+      ],
+      "source": "Alcaldía de Pereira (M. Salazar) · CMGRD · Gobernación de Risaralda"
+    },
+    {
+      "name": "Quibdó",
+      "department": "Chocó",
+      "alert": "roja",
+      "lat": 5.6947,
+      "lon": -76.6611,
+      "deaths": 9,
+      "injured": 116,
+      "collapsed": 9,
+      "missing": 5,
+      "trapped": 6,
+      "summary": "Capacidad de respuesta local desbordada. 862 viviendas averiadas y 23 colapsadas por la cercanía al epicentro.",
+      "needs": [
+        [
+          "⛑️",
+          "Equipos y personal especializado BREC",
+          "Para búsqueda y rescate de personas atrapadas y desaparecidas en estructuras colapsadas."
+        ],
+        [
+          "🏗️",
+          "Equipos de evaluación técnica y estructural",
+          "Para determinar las condiciones de seguridad de las edificaciones afectadas."
+        ],
+        [
+          "🚑",
+          "Atención médica y traslado de heridos",
+          "Junto con ayuda humanitaria básica."
+        ]
+      ],
+      "source": "Alcaldía de Quibdó · Gobernación del Chocó · ODGRD"
+    },
+    {
+      "name": "Manizales",
+      "department": "Caldas",
+      "alert": "roja",
+      "lat": 5.0689,
+      "lon": -75.5174,
+      "deaths": 5,
+      "injured": 112,
+      "collapsed": 17,
+      "missing": 0,
+      "trapped": 0,
+      "summary": "17 edificios destruidos, 19 parcialmente colapsados y 24 colegios con daño crítico. 2.000 personas desplazadas.",
+      "needs": [
+        [
+          "🩸",
+          "Donación de sangre de todos los grupos",
+          "El Hemocentro del Café y Tolima solicita donantes ante la escasez de componentes."
+        ],
+        [
+          "🛒",
+          "Evitar compras excesivas",
+          "Llamado de la Alcaldía para prevenir el desabastecimiento y los desplazamientos innecesarios."
+        ]
+      ],
+      "source": "Alcaldía de Manizales · Hemocentro del Café y Tolima"
+    },
+    {
+      "name": "Armenia",
+      "department": "Quindío",
+      "alert": "roja",
+      "lat": 4.5339,
+      "lon": -75.6811,
+      "deaths": 0,
+      "injured": 174,
+      "collapsed": 69,
+      "missing": 0,
+      "trapped": 0,
+      "summary": "Sin víctimas mortales, pero con 174 heridos y cerca de 14.500 estructuras averiadas. Evaluar habitabilidad es la prioridad.",
+      "needs": [
+        [
+          "⛺",
+          "Carpas",
+          "Para hospitales y personas que requieren alojamiento temporal."
+        ],
+        [
+          "🛏️",
+          "Colchonetas, frazadas, sábanas y almohadas",
+          "Para alojamiento temporal."
+        ],
+        [
+          "🥫",
+          "Mercados (alimentos)",
+          "Ayuda humanitaria básica."
+        ],
+        [
+          "🍳",
+          "Baterías de cocina",
+          "Para las familias afectadas."
+        ]
+      ],
+      "source": "Alcaldía de Armenia / CMGRD"
+    },
+    {
+      "name": "Popayán",
+      "department": "Cauca",
+      "alert": "media",
+      "lat": 2.4448,
+      "lon": -76.6147,
+      "deaths": 0,
+      "injured": 0,
+      "collapsed": 0,
+      "missing": 0,
+      "trapped": 0,
+      "summary": "Restablecimiento de energía y servicios públicos en gestión institucional.",
+      "needs": [
+        [
+          "ℹ️",
+          "Sin solicitud oficial de donaciones",
+          "No se registra solicitud de donaciones al corte."
+        ]
+      ],
+      "source": "Alcaldía de Popayán / GRD"
+    }
+  ],
+  "points": [
+    {
+      "id": "bog-samu-sur",
+      "name": "SAMU Sur",
+      "organization": "Cruz Roja Bogotá",
+      "city": "Bogotá D.C.",
+      "type": "acopio",
+      "address": "Av. Carrera 68 # 31-41 Sur",
+      "lat": 4.62755,
+      "lon": -74.12292,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": [
+        "agua",
+        "alimentos",
+        "dormir",
+        "aseo"
+      ]
+    },
+    {
+      "id": "bog-samu-norte",
+      "name": "SAMU Norte",
+      "organization": "Cruz Roja Bogotá",
+      "city": "Bogotá D.C.",
+      "type": "acopio",
+      "address": "Calle 134 - Carrera 7B Bis # 132-31",
+      "lat": 4.73258,
+      "lon": -74.02521,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": [
+        "agua",
+        "alimentos",
+        "dormir",
+        "aseo"
+      ]
+    },
+    {
+      "id": "bog-acuatico",
+      "name": "Centro de Salvamento Acuático",
+      "organization": "Cruz Roja Bogotá",
+      "city": "Bogotá D.C.",
+      "type": "acopio",
+      "address": "Av. La Esmeralda # 63-81",
+      "lat": 4.66086,
+      "lon": -74.0878,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": [
+        "agua",
+        "alimentos",
+        "dormir",
+        "aseo"
+      ]
+    },
+    {
+      "id": "bog-sede-admin",
+      "name": "Sede Administrativa",
+      "organization": "Cruz Roja Bogotá",
+      "city": "Bogotá D.C.",
+      "type": "acopio",
+      "address": "Carrera 24 # 73-38",
+      "lat": 4.61809,
+      "lon": -74.0813,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": [
+        "agua",
+        "alimentos",
+        "dormir",
+        "aseo"
+      ]
+    },
+    {
+      "id": "bog-bodega",
+      "name": "Bodega Cruz Roja",
+      "organization": "Cruz Roja Bogotá",
+      "city": "Bogotá D.C.",
+      "type": "acopio",
+      "address": "Diagonal 79B # 62-53",
+      "lat": 4.67853,
+      "lon": -74.07655,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": [
+        "agua",
+        "alimentos",
+        "dormir",
+        "aseo"
+      ]
+    },
+    {
+      "id": "bog-palacio",
+      "name": "Palacio de los Deportes",
+      "organization": "Cruz Roja Bogotá",
+      "city": "Bogotá D.C.",
+      "type": "acopio",
+      "address": "Calle 63 # 59A-06",
+      "lat": 4.65532,
+      "lon": -74.08406,
+      "phone": "",
+      "hours": "",
+      "precision": "exacta",
+      "source": "asocapitales",
+      "accepted": [
+        "agua",
+        "alimentos",
+        "dormir",
+        "aseo"
+      ]
+    },
+    {
+      "id": "med-fubam",
+      "name": "Fundación Banco Arquidiocesano de Alimentos (FUBAM)",
+      "organization": "FUBAM",
+      "city": "Medellín",
+      "type": "acopio",
+      "address": "Carrera 52 # 30A-97",
+      "lat": 6.24423,
+      "lon": -75.56824,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": [
+        "alimentos",
+        "aseo"
+      ]
+    },
+    {
+      "id": "med-saciar",
+      "name": "Fundación Saciar",
+      "organization": "Fundación Saciar",
+      "city": "Medellín",
+      "type": "acopio",
+      "address": "Carrera 50 # 25-261",
+      "lat": 6.22952,
+      "lon": -75.57628,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": [
+        "alimentos",
+        "aseo"
+      ]
+    },
+    {
+      "id": "med-terminal",
+      "name": "Terminal de Transportes",
+      "organization": "Alcaldía de Medellín",
+      "city": "Medellín",
+      "type": "acopio",
+      "address": "Terminal de Transportes",
+      "lat": 6.27924,
+      "lon": -75.57076,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "med-alpujarra",
+      "name": "La Alpujarra",
+      "organization": "Alcaldía de Medellín",
+      "city": "Medellín",
+      "type": "acopio",
+      "address": "Centro Administrativo La Alpujarra",
+      "lat": 6.24453,
+      "lon": -75.57303,
+      "phone": "",
+      "hours": "",
+      "precision": "exacta",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "baq-barranquillita",
+      "name": "Centro de acopio Barranquillita",
+      "organization": "Alcaldía de Barranquilla",
+      "city": "Barranquilla",
+      "type": "acopio",
+      "address": "Carrera 43 # 6-120",
+      "lat": 10.99048,
+      "lon": -74.80503,
+      "phone": "",
+      "hours": "Abierto las 24 horas",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "cal-jairo-varela",
+      "name": "Plazoleta Jairo Varela",
+      "organization": "Alcaldía de Cali",
+      "city": "Cali",
+      "type": "acopio",
+      "address": "Avenida 2 Norte # 10 Norte-1 a 10 Norte-75",
+      "lat": 3.45502,
+      "lon": -76.5348,
+      "phone": "",
+      "hours": "",
+      "precision": "exacta",
+      "source": "asocapitales",
+      "accepted": [
+        "agua",
+        "alimentos",
+        "dormir",
+        "aseo",
+        "emergencia",
+        "mascotas"
+      ]
+    },
+    {
+      "id": "iba-banco-alimentos",
+      "name": "Banco Arquidiocesano de Alimentos de Ibagué",
+      "organization": "Banco de Alimentos",
+      "city": "Ibagué",
+      "type": "acopio",
+      "address": "Carrera 4A Estadio # 23-42",
+      "lat": 4.4359,
+      "lon": -75.22593,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": [
+        "alimentos"
+      ]
+    },
+    {
+      "id": "smr-ogricc",
+      "name": "Sede OGRICC",
+      "organization": "Alcaldía de Santa Marta",
+      "city": "Santa Marta",
+      "type": "acopio",
+      "address": "Calle 16 # 14A-08, barrio El Cundí, segundo piso",
+      "lat": 11.2395,
+      "lon": -74.18682,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "per-consota",
+      "name": "Café Consota",
+      "organization": "Alcaldía de Pereira / CMGRD",
+      "city": "Pereira",
+      "type": "acopio",
+      "address": "Manzana 7 y Manzana 8, Villa Consota, Cuba",
+      "lat": 4.80222,
+      "lon": -75.72567,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "per-perla-otun",
+      "name": "Café Perla del Otún",
+      "organization": "Alcaldía de Pereira / CMGRD",
+      "city": "Pereira",
+      "type": "acopio",
+      "address": "Diagonal a la iglesia de los 2.500 Lotes, Cuba",
+      "lat": 4.79601,
+      "lon": -75.72937,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "per-remanso",
+      "name": "Café El Remanso",
+      "organization": "Alcaldía de Pereira / CMGRD",
+      "city": "Pereira",
+      "type": "acopio",
+      "address": "Avenida principal, barrio El Remanso, junto al Centro de Salud",
+      "lat": 4.78723,
+      "lon": -75.67055,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "per-kennedy",
+      "name": "Café Kennedy",
+      "organization": "Alcaldía de Pereira / CMGRD",
+      "city": "Pereira",
+      "type": "acopio",
+      "address": "Parque principal de Kennedy",
+      "lat": 4.80836,
+      "lon": -75.6721,
+      "phone": "",
+      "hours": "",
+      "precision": "exacta",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "per-ormaza",
+      "name": "Café Ormaza",
+      "organization": "Alcaldía de Pereira / CMGRD",
+      "city": "Pereira",
+      "type": "acopio",
+      "address": "Calle 3 Bis # 5-38, Avenida del Río",
+      "lat": 4.80752,
+      "lon": -75.68154,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "per-san-nicolas",
+      "name": "Café San Nicolás",
+      "organization": "Alcaldía de Pereira / CMGRD",
+      "city": "Pereira",
+      "type": "acopio",
+      "address": "Carrera 14 Bis # 28-38, antigua Estación de Policía",
+      "lat": 4.80766,
+      "lon": -75.70386,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "per-comuna-cafe",
+      "name": "Café Comuna del Café",
+      "organization": "Alcaldía de Pereira / CMGRD",
+      "city": "Pereira",
+      "type": "acopio",
+      "address": "Carrera 3, Calle 59A, sector A, Parque Industrial",
+      "lat": 4.82265,
+      "lon": -75.7278,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "qui-cabi",
+      "name": "Bodega de la Bomba de Cabí",
+      "organization": "Alcaldía de Quibdó",
+      "city": "Quibdó",
+      "type": "acopio",
+      "address": "Estación de servicio Terpel, Cabí",
+      "lat": 5.67144,
+      "lon": -76.64354,
+      "phone": "+57 311 603 7050",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "sangre-bogota",
+      "name": "Banco Nacional de Sangre",
+      "organization": "Banco Nacional de Sangre",
+      "city": "Bogotá D.C.",
+      "type": "sangre",
+      "address": "Av. Carrera 68 # 68B-31",
+      "lat": 4.67629,
+      "lon": -74.08686,
+      "phone": "310 217 2379",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "sangre-medellin",
+      "name": "Banco Regional de Sangre Medellín",
+      "organization": "Banco Regional de Sangre",
+      "city": "Medellín",
+      "type": "sangre",
+      "address": "Carrera 52 # 25-310",
+      "lat": 6.21962,
+      "lon": -75.58017,
+      "phone": "301 701 6237",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "sangre-cartagena",
+      "name": "Banco Regional de Sangre Cartagena",
+      "organization": "Banco Regional de Sangre",
+      "city": "Cartagena",
+      "type": "sangre",
+      "address": "Calle 30 # 44D-71, Barrio España",
+      "lat": 10.40599,
+      "lon": -75.50999,
+      "phone": "310 627 6160",
+      "hours": "",
+      "precision": "exacta",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "sangre-villavicencio",
+      "name": "Punto de Captación Villavicencio",
+      "organization": "Punto de captación",
+      "city": "Villavicencio",
+      "type": "sangre",
+      "address": "Carrera 30 # 39-30",
+      "lat": 4.15448,
+      "lon": -73.63809,
+      "phone": "310 275 5012",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "man-palogrande",
+      "name": "Punto de donación Palogrande",
+      "organization": "Hemocentro del Café y Tolima",
+      "city": "Manizales",
+      "type": "sangre",
+      "address": "Cancha auxiliar detrás del Estadio Palogrande, junto a la estación de Bomberos",
+      "lat": 5.05701,
+      "lon": -75.49009,
+      "phone": "310 456 0822",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "sangre-armenia",
+      "name": "Banco Regional de Sangre Armenia",
+      "organization": "Banco Regional de Sangre",
+      "city": "Armenia",
+      "type": "sangre",
+      "address": "Av. Bolívar # 23 Norte-60",
+      "lat": 4.5456,
+      "lon": -75.6625,
+      "phone": "316 478 1842 · 300 648 1293",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "sangre-cali",
+      "name": "Banco Regional de Sangre Cali",
+      "organization": "Banco Regional de Sangre",
+      "city": "Cali",
+      "type": "sangre",
+      "address": "Carrera 38 Bis # 5-91, San Fernando",
+      "lat": 3.4256,
+      "lon": -76.54455,
+      "phone": "311 625 8815",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "per-hemocentro",
+      "name": "Donación de sangre · Hemocentro regional",
+      "organization": "Hemocentro del Café y Tolima",
+      "city": "Pereira",
+      "type": "sangre",
+      "address": "Sin dirección publicada al corte. Referencia: Cruz Roja Seccional Risaralda",
+      "lat": 4.80739,
+      "lon": -75.6922,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "asocapitales",
+      "accepted": []
+    },
+    {
+      "id": "arm-banco-alimentos",
+      "name": "Banco de Alimentos Mons. Roberto López Londoño",
+      "organization": "Banco de Alimentos",
+      "city": "Armenia",
+      "type": "acopio",
+      "address": "Calle 21 # 12-25",
+      "lat": 4.53348,
+      "lon": -75.67438,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "usuario",
+      "accepted": [
+        "alimentos"
+      ]
+    },
+    {
+      "id": "cal-banco-alimentos",
+      "name": "Fundación Arquidiocesana Banco de Alimentos",
+      "organization": "Banco de Alimentos",
+      "city": "Cali",
+      "type": "acopio",
+      "address": "Calle 24 # 6-103",
+      "lat": 3.43716,
+      "lon": -76.51933,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "usuario",
+      "accepted": [
+        "alimentos"
+      ]
+    },
+    {
+      "id": "bue-banco-alimentos",
+      "name": "Banco de Alimentos de Buenaventura",
+      "organization": "Bancoregio",
+      "city": "Buenaventura",
+      "type": "acopio",
+      "address": "Av. Simón Bolívar No. 47C-70, interior Colegio Seminario",
+      "lat": 3.87111,
+      "lon": -76.99752,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "usuario",
+      "accepted": [
+        "alimentos"
+      ]
+    },
+    {
+      "id": "ist-templo-comedor",
+      "name": "Templo Comedor Istmina",
+      "organization": "Fundación Saciar",
+      "city": "Istmina",
+      "type": "acopio",
+      "address": "Istmina, Chocó — se despacha desde Fundación Saciar, Carrera 50 # 25-261, Medellín",
+      "lat": 5.15931,
+      "lon": -76.68553,
+      "phone": "",
+      "hours": "",
+      "precision": "aprox",
+      "source": "usuario",
+      "accepted": [
+        "alimentos"
+      ]
+    }
+  ],
+  "what_to_donate": [
+    {
+      "id": "alimentos",
+      "icono": "🥫",
+      "nombre": "Alimentos no perecederos",
+      "detalle": "Mercados, enlatados y granos sin vencer.",
+      "coincide": [
+        "aliment",
+        "mercado"
+      ],
+      "tipo": "acopio"
+    },
+    {
+      "id": "agua",
+      "icono": "💧",
+      "nombre": "Agua potable",
+      "detalle": "En bolsas o botellas selladas.",
+      "coincide": [
+        "agua"
+      ],
+      "tipo": "acopio"
+    },
+    {
+      "id": "dormir",
+      "icono": "⛺",
+      "nombre": "Carpas, colchonetas y cobijas",
+      "detalle": "Para alojamiento temporal y albergues.",
+      "coincide": [
+        "carpa",
+        "colchoneta",
+        "manta",
+        "frazada",
+        "cobija",
+        "almohada"
+      ],
+      "tipo": "acopio"
+    },
+    {
+      "id": "aseo",
+      "icono": "🧴",
+      "nombre": "Aseo e higiene personal",
+      "detalle": "Kits de aseo, papel higiénico, toallas, tapabocas y guantes.",
+      "coincide": [
+        "aseo",
+        "higiene",
+        "papel",
+        "toalla",
+        "tapabocas"
+      ],
+      "tipo": "acopio"
+    },
+    {
+      "id": "emergencia",
+      "icono": "🔦",
+      "nombre": "Elementos para la emergencia",
+      "detalle": "Palas, linternas, cascos, gafas de protección y bolsas para residuos.",
+      "coincide": [
+        "pala",
+        "linterna",
+        "casco",
+        "gafas",
+        "bolsa"
+      ],
+      "tipo": "acopio"
+    },
+    {
+      "id": "cocina",
+      "icono": "🍳",
+      "nombre": "Baterías de cocina",
+      "detalle": "Ollas y utensilios para las familias afectadas.",
+      "coincide": [
+        "cocina"
+      ],
+      "tipo": "acopio"
+    },
+    {
+      "id": "mascotas",
+      "icono": "🐶",
+      "nombre": "Alimento para perros y gatos",
+      "detalle": "Para los animales afectados por la emergencia.",
+      "coincide": [
+        "perro",
+        "gato",
+        "mascota"
+      ],
+      "tipo": "acopio"
+    },
+    {
+      "id": "sangre",
+      "icono": "🩸",
+      "nombre": "Sangre",
+      "detalle": "Se requieren todos los grupos. Donantes de 18 a 65 años en buen estado de salud.",
+      "coincide": [
+        "sangre"
+      ],
+      "tipo": "sangre"
+    },
+    {
+      "id": "dinero",
+      "icono": "💰",
+      "nombre": "Dinero",
+      "detalle": "Aporte monetario por el canal oficial de la Cruz Roja Colombiana.",
+      "coincide": [],
+      "tipo": "dinero"
+    }
+  ],
+  "cash_donation": {
+    "entidad": "Cruz Roja Colombiana",
+    "url": "https://ayuda.cruzrojacolombiana.org/emergencia-colombia-terremoto",
+    "descripcion": "Campaña oficial «Emergencia Colombia Terremoto» de la Cruz Roja Colombiana.",
+    "destino": [
+      "Servicios esenciales de salud",
+      "Acceso a agua potable",
+      "Restablecimiento de las redes de telecomunicaciones",
+      "Apoyo en las misiones de rescate",
+      "Restablecimiento de vínculos familiares"
+    ],
+    "pasos": [
+      "Ingrese a la página oficial de la Cruz Roja Colombiana y dé clic en <b>«Haz tu donación»</b>.",
+      "Seleccione el país desde donde va a donar: <b>Colombia, Estados Unidos o Unión Europea</b>.",
+      "Seleccione si va a hacer una <b>única donación o mensual</b>.",
+      "Elija uno de los montos sugeridos: <b>$50 mil, $100 mil, $150 mil o $200 mil</b>. También puede elegir su propio monto desde <b>$10 mil</b>.",
+      "Llene el formulario con sus <b>datos personales</b>.",
+      "Defina cómo pagar y pague: puede hacerlo con <b>tarjeta</b> o con <b>PSE</b>, para pagar desde diferentes bancos y billeteras digitales."
+    ],
+    "advertencia": "Recomendamos donar exclusivamente por canales oficiales y verificados. Durante la emergencia circulan cuentas y enlaces no autorizados; Asocapitales insiste en verificar siempre los canales oficiales antes de transferir dinero."
+  },
+  "alert_departments": [
+    "Valle Del Cauca",
+    "Risaralda",
+    "Caldas",
+    "Choco",
+    "Quindio"
+  ],
+  "references": [
+    {
+      "titulo": "Terremoto deja 188 fallecidos y 1.677 heridos en ciudades capitales",
+      "detalle": "Reporte Consolidado No. 14, corte 4:00 p. m. del 11 de agosto de 2026. Fuente de todas las cifras de este mapa.",
+      "url": "https://www.asocapitales.co/actualidad/noticias/ciudades-seguras/terremoto-deja-188-fallecidos-y-1677-heridos-en-ciudades"
+    },
+    {
+      "titulo": "Informe No. 14 · Asocapitales (PDF)",
+      "detalle": "Documento consolidado con el balance por ciudad capital, corte 4:00 p. m. del 11 de agosto de 2026.",
+      "url": "https://www.asocapitales.co/sites/default/files/2026-08/informe-no.14-4pm-asocapitales.pdf"
+    },
+    {
+      "titulo": "Micrositio oficial · Terremoto en Colombia",
+      "detalle": "Matriz consolidada de ayudas y centros de acopio por ciudad capital. Última actualización: 11 ago 2026, 7:00 a. m.",
+      "url": "https://www.asocapitales.co/terremoto-colombia.html"
+    },
+    {
+      "titulo": "Ciudades capitales activan centros de acopio para apoyar a las víctimas del terremoto de magnitud 7,4",
+      "detalle": "Nota oficial de Asocapitales con el listado de puntos por ciudad. Publicada el 10 de agosto de 2026.",
+      "url": "https://www.asocapitales.co/actualidad/noticias/ciudades-seguras/ciudades-capitales-activan-centros-de-acopio-para-apoyar-las"
+    },
+    {
+      "titulo": "A casi 24 horas del terremoto, Colombia registra 169 fallecidos; 165 en ciudades capitales",
+      "detalle": "Balance previo del 11 de agosto de 2026. Sus cifras fueron superadas por el Reporte Consolidado No. 14; se conserva como antecedente.",
+      "url": "https://www.asocapitales.co/actualidad/noticias/ciudades-seguras/casi-24-horas-del-terremoto-colombia-registra-169-fallecidos"
+    },
+    {
+      "titulo": "Informe Ejecutivo · Sismo Nacional · 10 de agosto de 2026 (PDF)",
+      "detalle": "Reporte de situación No. 6, corte 4:30 p. m. Balance por ciudad capital y recomendaciones operativas.",
+      "url": "https://www.asocapitales.co/sites/default/files/2026-08/informe-ejecutivo-sismo-nacional-10-08-2026.pdf"
+    },
+    {
+      "titulo": "Publicación en Instagram · @asocapitales_ — «Las ciudades capitales nos necesitan»",
+      "detalle": "Carrusel con las necesidades prioritarias reportadas por las administraciones de Pereira, Quibdó, Manizales, Armenia y Cali.",
+      "url": "https://www.instagram.com/p/Db4LG2ijU0j/"
+    }
+  ]
+}
