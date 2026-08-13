@@ -54,12 +54,12 @@ def kpi_cards(data: dict[str, Any]) -> list[html.Article]:
     figures = data["figures"]
     forensic = data.get("forensics", {})
     cards = [
-        ("Fallecidos reportados", figures.get("fallecidos"), "Ciudades capitales · Asocapitales", "people", "cyan"),
+        ("Fallecidos en Colombia", figures.get("fallecidos_pais", figures.get("fallecidos")), "UNGRD · corte 9:30 a. m.", "people", "cyan"),
+        ("Personas heridas", figures.get("heridos_pais", figures.get("heridos")), "UNGRD · consolidado nacional", "medical", "purple"),
+        ("Personas desaparecidas", figures.get("desaparecidos_pais", figures.get("desaparecidos")), "Fiscalía General · reportado por UNGRD", "alert", "red"),
+        ("Fallecidos en capitales", figures.get("fallecidos"), "Asocapitales · Reporte No. 22", "pin", "blue"),
         ("Víctimas identificadas", forensic.get("victims_identified"), "Medicina Legal · indicador forense", "forensic", "magenta"),
-        ("Personas heridas", figures.get("heridos"), f"{format_number(figures.get('heridos_pais'))} en el país", "medical", "purple"),
-        ("Estructuras colapsadas", figures.get("colapsos"), "Evaluación EDAN en curso", "building", "blue"),
-        ("Capitales en alerta roja", figures.get("alerta_roja"), "Respuesta territorial activa", "alert", "red"),
-        ("Puntos verificados", len(data.get("points", [])), "Acopio y donación de sangre", "pin", "green"),
+        ("Capitales en alerta roja", figures.get("alerta_roja"), "Respuesta territorial activa", "building", "green"),
     ]
     return [
         html.Article(
@@ -68,6 +68,64 @@ def kpi_cards(data: dict[str, Any]) -> list[html.Article]:
         )
         for label, value, note, icon, accent in cards
     ]
+
+
+def national_balance_panel(data: dict[str, Any]) -> html.Section:
+    """Presenta el balance nacional del corte oficial de la UNGRD."""
+    figures = data["figures"]
+    metrics = [
+        ("Familias afectadas", figures.get("familias_afectadas")),
+        ("Personas afectadas", figures.get("personas_afectadas")),
+        ("Viviendas destruidas", figures.get("viviendas_destruidas")),
+        ("Viviendas averiadas", figures.get("viviendas_averiadas")),
+        ("Edificios colapsados", figures.get("edificios_colapsados")),
+        ("Centros educativos", figures.get("centros_educativos_afectados")),
+        ("Centros comunitarios", figures.get("centros_comunitarios_afectados")),
+        ("Centros de salud", figures.get("centros_salud_afectados")),
+        ("Acueductos", figures.get("acueductos_afectados")),
+        ("Entidades bancarias", figures.get("entidades_bancarias_afectadas")),
+        ("Aeropuertos", figures.get("aeropuertos_afectados")),
+        ("Animales afectados", figures.get("animales_afectados")),
+        ("Animales rescatados", figures.get("animales_rescatados")),
+    ]
+    visible_metrics = [(label, value) for label, value in metrics if value is not None]
+    return html.Section(
+        [
+            html.Div(
+                [
+                    html.Div(line_icon("alert"), className="official-icon"),
+                    html.Div(
+                        [
+                            html.Span("BALANCE NACIONAL · UNGRD"),
+                            html.H2("Afectaciones reportadas"),
+                            html.P(f"Corte: {figures.get('corte_ungrd', 'no informado')}")
+                        ]
+                    ),
+                ],
+                className="official-heading",
+            ),
+            html.Div(
+                [
+                    html.Div([html.Strong(format_number(value)), html.Span(label)])
+                    for label, value in visible_metrics
+                ],
+                className="official-grid",
+            ),
+            html.Div(
+                [
+                    html.Span("Reporte preliminar sujeto a actualización."),
+                    html.A(
+                        "Ver publicación oficial de la UNGRD",
+                        href=figures.get("ungrd_source_url", "#"),
+                        target="_blank",
+                        rel="noreferrer",
+                    ),
+                ],
+                className="official-source",
+            ),
+        ],
+        className="official-panel",
+    )
 
 
 def _department_labels(geojson: dict[str, Any]) -> list[dl.DivMarker]:

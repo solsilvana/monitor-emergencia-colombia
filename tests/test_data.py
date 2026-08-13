@@ -32,6 +32,15 @@ class LocalDataTests(unittest.TestCase):
             if isinstance(value, (int, float)):
                 self.assertGreaterEqual(value, 0, key)
 
+    def test_official_reports_have_separate_cuts_and_totals(self):
+        figures = load_data()["figures"]
+        self.assertEqual(figures["fallecidos_pais"], 273)
+        self.assertEqual(figures["heridos_pais"], 3824)
+        self.assertEqual(figures["desaparecidos_pais"], 377)
+        self.assertEqual(figures["fallecidos"], 204)
+        self.assertIn("UNGRD", figures["ungrd_source_url"])
+        self.assertIn("asocapitales", figures["asocapitales_source_url"])
+
     def test_forensic_indicators_are_separate_and_valid(self):
         data = load_data()
         forensic = data["forensics"]

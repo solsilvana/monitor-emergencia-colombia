@@ -12,12 +12,23 @@ from src.components import (
     forensic_panel,
     kpi_cards,
     map_component,
+    national_balance_panel,
     point_list,
 )
 
 
 def _source_cards(data: dict[str, Any]) -> list[html.Div]:
-    references = data.get("references", [])[:6]
+    figures = data.get("figures", {})
+    references = [
+        {
+            "titulo": "UNGRD · Balance nacional del 13 de agosto, 9:30 a. m.",
+            "url": figures.get("ungrd_source_url", "#"),
+        },
+        {
+            "titulo": "Asocapitales · Informe Consolidado No. 22",
+            "url": figures.get("asocapitales_pdf_url", figures.get("asocapitales_source_url", "#")),
+        },
+    ] + data.get("references", [])[:4]
     forensic = data.get("forensics", {})
     references.append({"titulo": "Medicina Legal · Comunicado Oficial No. 06", "url": forensic.get("source_url", "#")})
     cards = []
@@ -85,10 +96,10 @@ def build_layout(data: dict[str, Any], geojson: dict[str, Any], run_log: dict[st
                             ),
                             html.Div(
                                 [
-                                    html.Div([html.Span("ÚLTIMO CORTE TERRITORIAL"), html.Strong(data["meta"].get("cut", "Sin corte informado"), id="cut-value")], className="cut-block"),
+                                    html.Div([html.Span("ÚLTIMOS CORTES OFICIALES"), html.Strong(data["meta"].get("cut", "Sin corte informado"), id="cut-value")], className="cut-block"),
                                     html.Div(status_text, id="update-result", className=f"update-status {status_class}"),
                                     html.Button([html.Span("↻"), "Actualizar fuentes"], id="update-data-button", n_clicks=0, className="update-button"),
-                                    html.P("Economía para la Pipol + Asocapitales + Medicina Legal. Si no hay internet se conserva el último corte validado."),
+                                    html.P("UNGRD + Asocapitales + entidades territoriales + Medicina Legal. Si no hay internet se conserva el último corte validado."),
                                 ],
                                 className="update-panel",
                             ),
@@ -99,6 +110,7 @@ def build_layout(data: dict[str, Any], geojson: dict[str, Any], run_log: dict[st
                         [html.Div([html.Span("01"), html.Div([html.H2("Indicadores para la respuesta"), html.P("Cada tarjeta conserva su fuente y universo de medición.")])], className="section-heading"), html.Div(kpi_cards(data), id="kpi-container", className="kpi-grid")],
                         className="section-block kpi-section",
                     ),
+                    national_balance_panel(data),
                     html.Section(
                         [
                             html.Div(
@@ -155,7 +167,7 @@ def build_layout(data: dict[str, Any], geojson: dict[str, Any], run_log: dict[st
                 [
                     html.Div([html.Strong("SOL SILVANA ZB · EpiSIG"), html.Span("Divulgación, mapas, datos y epidemiología")]),
                     html.Div([html.Strong("X @solsilvanazb"), html.Strong("IG @solsilvanazb_episig")]),
-                    html.P("Tablero independiente basado en información reportada por Asocapitales, Cruz Roja, UNGRED, entidades territoriales y Medicina Legal, según disponibilidad. No reemplaza reportes oficiales."),
+                    html.P("Tablero independiente basado en información reportada por la UNGRD, Asocapitales, Cruz Roja, entidades territoriales y Medicina Legal, según disponibilidad. No reemplaza reportes oficiales."),
                 ],
                 className="footer",
             ),

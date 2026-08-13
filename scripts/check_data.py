@@ -32,6 +32,20 @@ def main() -> int:
     for city in data.get("cities", []):
         if city.get("deaths", 0) < 0 or city.get("injured", 0) < 0:
             problems.append(f"{city['name']} tiene una cifra negativa.")
+    figures = data.get("figures", {})
+    city_totals = {
+        "fallecidos": sum(city.get("deaths", 0) for city in data.get("cities", [])),
+        "heridos": sum(city.get("injured", 0) for city in data.get("cities", [])),
+        "desaparecidos": sum(city.get("missing", 0) for city in data.get("cities", [])),
+        "colapsos": sum(city.get("collapsed", 0) for city in data.get("cities", [])),
+    }
+    for field, total in city_totals.items():
+        if figures.get(field) != total:
+            problems.append(
+                f"El total de {field} por ciudad ({total}) no coincide con el consolidado ({figures.get(field)})."
+            )
+    if figures.get("fallecidos_pais", 0) < figures.get("fallecidos", 0):
+        problems.append("El total nacional de fallecidos es menor que el total de capitales.")
     forensic = data.get("forensics", {})
     for field in ("bodies_received", "victims_identified", "bodies_delivered"):
         if not isinstance(forensic.get(field), int) or forensic[field] < 0:
@@ -40,6 +54,19 @@ def main() -> int:
     print(f"Archivo de datos: {LATEST_DATA_FILE}")
     print(f"Capa geográfica: {GEOJSON_FILE}")
     print(f"Corte: {data['meta'].get('cut')}")
+    print(
+        "UNGRD nacional: "
+        f"{figures.get('fallecidos_pais')} fallecidos · "
+        f"{figures.get('heridos_pais')} heridos · "
+        f"{figures.get('desaparecidos_pais')} desaparecidos"
+    )
+    print(
+        "Asocapitales: "
+        f"{figures.get('fallecidos')} fallecidos · "
+        f"{figures.get('heridos')} heridos · "
+        f"{figures.get('desaparecidos')} desaparecidos · "
+        f"{figures.get('colapsos')} estructuras colapsadas"
+    )
     print(f"Ciudades: {len(data['cities'])}")
     print(f"Puntos: {len(data['points'])}")
     print(f"Departamentos: {len(geo['features'])}")
