@@ -144,6 +144,8 @@ a { color: inherit; }
 .need-icon { width: 18px; height: 18px; color: var(--purple); }
 .need-row strong { display: block; font-size: 10px; } .need-row p { margin: 3px 0 0; color: var(--muted); font-size: 9px; line-height: 1.4; }
 .city-source { margin-top: auto; padding-top: 15px; color: #7785a2; border-top: 1px solid var(--line); font-size: 9px; line-height: 1.5; }
+.city-source a { color: var(--cyan); font-weight: 700; text-decoration: none; }
+.city-source-links { display: flex; flex-wrap: wrap; gap: 5px 12px; margin-top: 4px; }
 .city-overview-row { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; padding: 11px; border: 1px solid var(--line); border-radius: 9px; background: rgba(7,10,23,.28); }
 .city-overview-row strong { grid-row: 1 / 3; align-self: center; font-size: 12px; } .city-overview-row span { color: var(--muted); font-size: 9px; text-align: right; }
 
@@ -158,6 +160,24 @@ a { color: inherit; }
 .forensic-grid > div { padding: 17px; border: 1px solid var(--line); border-radius: 12px; background: rgba(7,10,23,.42); }
 .forensic-grid strong, .forensic-grid span { display: block; }
 .forensic-grid strong { color: var(--magenta); font-size: 28px; } .forensic-grid span { margin-top: 5px; color: var(--muted); font-size: 10px; }
+.forensic-distributions { display: grid; grid-template-columns: .7fr 1.3fr; gap: 12px; margin-top: 12px; }
+.forensic-distribution-card, .forensic-units-block { padding: 19px; border: 1px solid var(--line); border-radius: 13px; background: rgba(7,10,23,.42); }
+.forensic-distribution-card h3, .forensic-units-block h3 { margin: 0; font-size: 13px; }
+.forensic-statline { margin: 6px 0 0; color: var(--muted); font-size: 9px; }
+.distribution-list { margin-top: 14px; }
+.distribution-row + .distribution-row { margin-top: 10px; }
+.distribution-label { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 5px; color: var(--muted); font-size: 9px; }
+.distribution-label strong { color: var(--text); font-size: 9px; }
+.distribution-track { display: block; height: 6px; overflow: hidden; border-radius: 999px; background: rgba(155,168,196,.13); }
+.distribution-track i { display: block; height: 100%; min-width: 2px; border-radius: inherit; background: linear-gradient(90deg, var(--magenta), var(--purple)); }
+.distribution-track.age i { background: linear-gradient(90deg, var(--cyan), var(--blue)); }
+.forensic-units-block { margin-top: 12px; }
+.forensic-units { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 7px; margin-top: 14px; }
+.forensic-units > div { padding: 10px; border: 1px solid rgba(38,52,84,.78); border-radius: 9px; background: rgba(18,26,49,.48); }
+.forensic-units strong, .forensic-units span { display: block; }
+.forensic-units strong { color: var(--magenta); font-size: 17px; }
+.forensic-units span { margin-top: 4px; color: var(--muted); font-size: 8px; line-height: 1.3; }
+.forensic-methodology-note { margin: 14px 0 0; color: #7f8da9; font-size: 9px; line-height: 1.55; }
 .forensic-source { display: flex; justify-content: space-between; gap: 15px; margin-top: 18px; color: #8290ad; font-size: 10px; }
 .forensic-source a { color: var(--cyan); font-weight: 700; }
 
@@ -202,6 +222,7 @@ a { color: inherit; }
   .brand-header { grid-template-columns: 1fr auto; } .header-status { display: none; }
   .kpi-grid { grid-template-columns: repeat(3, 1fr); } .map-grid { grid-template-columns: 1fr; }
   .official-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .forensic-units { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .map-container { border-right: 0; border-bottom: 1px solid var(--line); } .city-detail-card { min-height: 570px; }
   .points-list { grid-template-columns: repeat(3, 1fr); }
 }
@@ -212,6 +233,8 @@ a { color: inherit; }
   .city-dropdown { flex: 1; } .points-list { grid-template-columns: repeat(2, 1fr); }
   .donation-grid, .sources-grid { grid-template-columns: repeat(2, 1fr); }
   .forensic-grid { grid-template-columns: repeat(2, 1fr); }
+  .forensic-distributions { grid-template-columns: 1fr; }
+  .forensic-units { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 @media (max-width: 620px) {
   .brand-header, .dashboard-main, .footer { width: min(100% - 22px, 1480px); }
@@ -226,5 +249,6 @@ a { color: inherit; }
   .map-stage, .map-stage .leaflet-container { min-height: 560px !important; height: 560px !important; }
   .points-list, .donation-grid, .sources-grid { grid-template-columns: 1fr; }
   .forensic-panel { padding: 21px; } .forensic-grid { grid-template-columns: 1fr 1fr; }
+  .forensic-units { grid-template-columns: 1fr 1fr; }
   .forensic-source { flex-direction: column; } .footer { grid-template-columns: 1fr; } .footer p { grid-column: 1; }
 }

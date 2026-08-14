@@ -54,10 +54,10 @@ def kpi_cards(data: dict[str, Any]) -> list[html.Article]:
     figures = data["figures"]
     forensic = data.get("forensics", {})
     cards = [
-        ("Fallecidos en Colombia", figures.get("fallecidos_pais", figures.get("fallecidos")), "UNGRD · corte 9:30 a. m.", "people", "cyan"),
+        ("Fallecidos en Colombia", figures.get("fallecidos_pais", figures.get("fallecidos")), "UNGRD · corte 14 ago, 6:30 a. m.", "people", "cyan"),
         ("Personas heridas", figures.get("heridos_pais", figures.get("heridos")), "UNGRD · consolidado nacional", "medical", "purple"),
         ("Personas desaparecidas", figures.get("desaparecidos_pais", figures.get("desaparecidos")), "Fiscalía General · reportado por UNGRD", "alert", "red"),
-        ("Fallecidos en capitales", figures.get("fallecidos"), "Asocapitales · Reporte No. 22", "pin", "blue"),
+        ("Fallecidos en capitales", figures.get("fallecidos"), "Asocapitales · 13 ago, 10:00 a. m.", "pin", "blue"),
         ("Víctimas identificadas", forensic.get("victims_identified"), "Medicina Legal · indicador forense", "forensic", "magenta"),
         ("Capitales en alerta roja", figures.get("alerta_roja"), "Respuesta territorial activa", "building", "green"),
     ]
@@ -76,14 +76,19 @@ def national_balance_panel(data: dict[str, Any]) -> html.Section:
     metrics = [
         ("Familias afectadas", figures.get("familias_afectadas")),
         ("Personas afectadas", figures.get("personas_afectadas")),
+        ("Departamentos afectados", figures.get("departamentos_afectados")),
+        ("Municipios afectados", figures.get("municipios_afectados")),
+        ("Personas rescatadas", figures.get("rescatados_pais")),
         ("Viviendas destruidas", figures.get("viviendas_destruidas")),
         ("Viviendas averiadas", figures.get("viviendas_averiadas")),
         ("Edificios colapsados", figures.get("edificios_colapsados")),
         ("Centros educativos", figures.get("centros_educativos_afectados")),
         ("Centros comunitarios", figures.get("centros_comunitarios_afectados")),
         ("Centros de salud", figures.get("centros_salud_afectados")),
+        ("Vías afectadas", figures.get("vias_afectadas")),
         ("Acueductos", figures.get("acueductos_afectados")),
-        ("Entidades bancarias", figures.get("entidades_bancarias_afectadas")),
+        ("Puentes vehiculares", figures.get("puentes_vehiculares_afectados")),
+        ("Puentes peatonales", figures.get("puentes_peatonales_afectados")),
         ("Aeropuertos", figures.get("aeropuertos_afectados")),
         ("Animales afectados", figures.get("animales_afectados")),
         ("Animales rescatados", figures.get("animales_rescatados")),
@@ -223,23 +228,47 @@ def city_detail(data: dict[str, Any], selected_city: str | None) -> html.Div:
         return html.Div([
             html.Div("PANORAMA GENERAL", className="alert-chip overview-chip"),
             html.H2("Todas las ciudades", className="city-title"),
-            html.P(f"{len(cities)} ciudades capitales incluidas en el corte", className="city-department"),
+            html.P(f"{len(cities)} ciudades capitales · cortes territoriales diferenciados", className="city-department"),
             html.Div([
                 html.Div([html.Strong(city["name"]), html.Span(f"{format_number(city['deaths'])} fallecidos"), html.Span(f"{format_number(city['injured'])} heridos")], className="city-overview-row")
                 for city in cities
             ], className="city-overview-list"),
-            html.P("Seleccione una ciudad en el mapa o en el filtro para consultar necesidades y afectaciones específicas.", className="city-summary"),
+            html.P("Las fichas combinan las publicaciones locales más recientes disponibles. No sume estas filas: no corresponden a un mismo momento de observación.", className="city-summary"),
         ], className="city-detail-card")
 
     city = next((item for item in cities if item["name"] == selected_city), cities[0])
-    metrics = [("Fallecidos", city["deaths"]), ("Heridos", city["injured"]), ("Desaparecidos", city["missing"]), ("Colapsos", city["collapsed"])]
+    metrics = [
+        ("Fallecidos", city["deaths"]),
+        ("Heridos", city["injured"]),
+        ("Desaparecidos", city["missing"]),
+        (city.get("collapsed_label", "Colapsos"), city["collapsed"]),
+    ]
+    if city.get("rescued") is not None:
+        metrics.append(("Rescatados", city["rescued"]))
+    source_links = city.get("source_links") or [
+        {"label": city.get("source", "No informada"), "url": city.get("source_url", "#")}
+    ]
     return html.Div([
         html.Div("ALERTA ROJA" if city.get("alert") == "roja" else "SEGUIMIENTO", className="alert-chip"),
         html.H2(city["name"], className="city-title"), html.P(city.get("department", ""), className="city-department"),
         html.Div([html.Div([html.Strong(format_number(value)), html.Span(label)]) for label, value in metrics], className="city-metrics"),
         html.P(city.get("summary", ""), className="city-summary"), html.H3("Necesidades reportadas", className="sidebar-heading"),
         html.Div([html.Div([line_icon("check", "need-icon"), html.Div([html.Strong(need[1]), html.P(need[2])])], className="need-row") for need in city.get("needs", [])], className="needs-list"),
-        html.Div(f"Fuente territorial: {city.get('source', 'No informada')}", className="city-source"),
+        html.Div(
+            [
+                html.Span(f"Corte: {city.get('cut', 'no informado')}"),
+                html.Br(),
+                html.Span("Fuentes territoriales:"),
+                html.Div(
+                    [
+                        html.A(link.get("label", "Fuente"), href=link.get("url", "#"), target="_blank", rel="noreferrer")
+                        for link in source_links
+                    ],
+                    className="city-source-links",
+                ),
+            ],
+            className="city-source",
+        ),
     ], className="city-detail-card")
 
 
@@ -295,9 +324,52 @@ def forensic_panel(data: dict[str, Any]) -> html.Section:
         ("Cuerpos recibidos", forensic.get("bodies_received")), ("Víctimas identificadas", forensic.get("victims_identified")),
         ("Entregados a familiares", forensic.get("bodies_delivered")), ("Menores identificados", forensic.get("minors_identified")),
     ]
+    identified = forensic.get("victims_identified") or 1
+    sex_rows = forensic.get("sex", [])
+    age = forensic.get("age", {})
+    age_rows = age.get("bands", [])
+    unit_rows = forensic.get("forensic_units", [])
+
+    def distribution_rows(items: list[dict[str, Any]], color_class: str) -> html.Div:
+        return html.Div(
+            [
+                html.Div(
+                    [
+                        html.Div([html.Span(item["label"]), html.Strong(f"{format_number(item['value'])} · {format(item['value'] / identified, '.1%').replace('.', ',')}")], className="distribution-label"),
+                        html.Div(html.I(style={"width": f"{item['value'] / identified * 100:.1f}%"}), className=f"distribution-track {color_class}"),
+                    ],
+                    className="distribution-row",
+                )
+                for item in items
+            ],
+            className="distribution-list",
+        )
+
     return html.Section([
         html.Div([html.Div(line_icon("forensic"), className="forensic-icon"), html.Div([html.Span("MÓDULO FORENSE"), html.H2("Identificación y entrega digna")])], className="forensic-heading"),
-        html.P("Estos indicadores provienen de Medicina Legal y no equivalen al consolidado territorial de fallecidos reportado por Asocapitales.", className="forensic-method"),
+        html.P("Perfil agregado de las víctimas identificadas por Medicina Legal. No se publican nombres ni registros individuales y este universo no equivale al consolidado territorial de fallecidos de la UNGRD.", className="forensic-method"),
         html.Div([html.Div([html.Strong(format_number(value)), html.Span(label)]) for label, value in metrics], className="forensic-grid"),
-        html.Div([html.Span(f"Corte: {forensic.get('cut', 'no informado')}"), html.A("Ver publicación oficial", href=forensic.get("source_url", "#"), target="_blank", rel="noreferrer")], className="forensic-source"),
+        html.Div(
+            [
+                html.Div([html.H3("Distribución por sexo"), distribution_rows(sex_rows, "sex")], className="forensic-distribution-card"),
+                html.Div(
+                    [
+                        html.H3("Distribución por edad"),
+                        html.P(f"Media {str(age.get('mean', '—')).replace('.', ',')} años · mediana {age.get('median', '—')} · rango {age.get('min', '—')} a {age.get('max', '—')}", className="forensic-statline"),
+                        distribution_rows(age_rows, "age"),
+                    ],
+                    className="forensic-distribution-card",
+                ),
+            ],
+            className="forensic-distributions",
+        ),
+        html.Div(
+            [
+                html.H3("Unidad forense de procesamiento o reporte"),
+                html.Div([html.Div([html.Strong(format_number(item["value"])), html.Span(item["label"])]) for item in unit_rows], className="forensic-units"),
+                html.P(forensic.get("methodology", ""), className="forensic-methodology-note"),
+            ],
+            className="forensic-units-block",
+        ),
+        html.Div([html.Span(f"{forensic.get('report', 'Comunicado oficial')} · corte: {forensic.get('cut', 'no informado')}"), html.A("Ver publicación oficial", href=forensic.get("source_url", "#"), target="_blank", rel="noreferrer")], className="forensic-source"),
     ], className="forensic-panel")

@@ -10,7 +10,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from config import GEOJSON_FILE, LATEST_DATA_FILE  # noqa: E402
-from src.data_service import _inside_ring, load_data, load_geojson  # noqa: E402
+from src.data_service import _inside_ring, load_data, load_geojson, validate_forensic_snapshot  # noqa: E402
 
 
 def main() -> int:
@@ -33,23 +33,22 @@ def main() -> int:
         if city.get("deaths", 0) < 0 or city.get("injured", 0) < 0:
             problems.append(f"{city['name']} tiene una cifra negativa.")
     figures = data.get("figures", {})
-    city_totals = {
-        "fallecidos": sum(city.get("deaths", 0) for city in data.get("cities", [])),
-        "heridos": sum(city.get("injured", 0) for city in data.get("cities", [])),
-        "desaparecidos": sum(city.get("missing", 0) for city in data.get("cities", [])),
-        "colapsos": sum(city.get("collapsed", 0) for city in data.get("cities", [])),
-    }
-    for field, total in city_totals.items():
-        if figures.get(field) != total:
-            problems.append(
-                f"El total de {field} por ciudad ({total}) no coincide con el consolidado ({figures.get(field)})."
-            )
+    if figures.get("cities_same_cut", True):
+        city_totals = {
+            "fallecidos": sum(city.get("deaths", 0) for city in data.get("cities", [])),
+            "heridos": sum(city.get("injured", 0) for city in data.get("cities", [])),
+            "desaparecidos": sum(city.get("missing", 0) for city in data.get("cities", [])),
+            "colapsos": sum(city.get("collapsed", 0) for city in data.get("cities", [])),
+        }
+        for field, total in city_totals.items():
+            if figures.get(field) != total:
+                problems.append(
+                    f"El total de {field} por ciudad ({total}) no coincide con el consolidado ({figures.get(field)})."
+                )
     if figures.get("fallecidos_pais", 0) < figures.get("fallecidos", 0):
         problems.append("El total nacional de fallecidos es menor que el total de capitales.")
     forensic = data.get("forensics", {})
-    for field in ("bodies_received", "victims_identified", "bodies_delivered"):
-        if not isinstance(forensic.get(field), int) or forensic[field] < 0:
-            problems.append(f"Medicina Legal: {field} no es un entero válido.")
+    problems.extend(validate_forensic_snapshot(forensic))
 
     print(f"Archivo de datos: {LATEST_DATA_FILE}")
     print(f"Capa geográfica: {GEOJSON_FILE}")

@@ -13,7 +13,8 @@ El proyecto puede ejecutarse en un computador personal, incluso cuando no haya i
 - Selección de ciudades mediante el mapa o el desplegable.
 - KPI, necesidades territoriales, puntos habilitados y fuentes.
 - Actualización automática desde Economía para la Pipol.
-- Actualización del bloque forense desde la publicación de Medicina Legal en X mediante oEmbed público.
+- Módulo forense agregado por sexo, grupos de edad y unidad de procesamiento, sin publicar nombres.
+- Fuentes municipales y departamentales integradas en el módulo existente de ciudades, con sus cortes visibles.
 - Identidad visual propia Sol Silvana ZB · EpiSIG: negro, azul, cian, morado y magenta.
 - Selector **Todas las ciudades** y ficha panorámica territorial.
 - Leyenda superpuesta y siempre visible dentro del mapa.
@@ -103,15 +104,18 @@ El tablero fuente incluye en su HTML dos objetos JSON:
 
 Python los extrae sin ejecutar código de la página. El archivo nuevo solo reemplaza al anterior si supera las validaciones mínimas.
 
-El módulo de Medicina Legal consulta el texto de la publicación oficial mediante el endpoint público oEmbed de X y extrae de forma separada:
+El módulo de Medicina Legal usa un corte agregado verificado del **Comunicado Oficial No. 08**. El archivo local conserva:
 
 - cuerpos recibidos;
 - víctimas identificadas;
 - cuerpos entregados a familiares.
+- sexo agregado;
+- grupos de edad;
+- unidad forense de procesamiento o reporte.
 
-El número de víctimas identificadas **no sustituye** el indicador territorial de fallecidos: son universos y procesos distintos y por eso aparecen en tarjetas separadas.
+No se guardan ni publican nombres en el tablero. El número de víctimas identificadas **no sustituye** el indicador territorial de fallecidos: son universos y procesos distintos y por eso aparecen en tarjetas separadas. La unidad forense tampoco debe interpretarse automáticamente como lugar de residencia o de fallecimiento.
 
-La URL de Medicina Legal está centralizada en `config.py`. Cuando la entidad publique un boletín nuevo en otro post, puede cambiarla sin tocar el extractor usando la variable de entorno `MEDLEGAL_X_URL` (por ejemplo, desde Render).
+La fuente oficial está centralizada en `config.py`. El corte agregado se valida antes del despliegue para comprobar que sexo, edad y unidades forenses sumen el total de víctimas identificadas. La actualización automática del resto del tablero no sobrescribe este corte forense verificado.
 
 ## Funcionamiento sin internet
 
@@ -170,6 +174,9 @@ Configuración manual equivalente:
 - Asocapitales y administraciones territoriales: fuentes citadas por el tablero base.
 - Servicio Geológico Colombiano: información del evento sísmico.
 - UNGRD y Cruz Roja Colombiana: reportes de respuesta disponibles.
+- Instituto Nacional de Medicina Legal y Ciencias Forenses: Comunicado Oficial No. 08.
+- Alcaldía de Santiago de Cali y Alcaldía de Pereira: balances de los puestos de mando unificado.
+- Gobernaciones de Risaralda y Chocó: reportes departamentales con cortes independientes.
 
 Las cifras son preliminares y están sujetas a actualización conforme avancen la búsqueda, el rescate y la Evaluación de Daños y Necesidades.
 

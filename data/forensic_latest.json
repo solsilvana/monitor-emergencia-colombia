@@ -1,16 +1,24 @@
 {
   "source": "Instituto Nacional de Medicina Legal y Ciencias Forenses",
-  "source_url": "https://x.com/MedLegalColombi/status/2087762807332757803",
-  "bulletin_url": "https://www.medicinalegal.gov.co/noticias/-/asset_publisher/vLcVEedo8qgD/content/comunicado-oficial-no-05",
-  "report": "Comunicado Oficial No. 06",
-  "cut": "12 de agosto de 2026, 8:00 p. m.",
-  "bodies_received": 230,
-  "victims_identified": 205,
-  "minors_identified": 12,
-  "bodies_delivered": 140,
-  "status": "updated",
-  "note": "Indicadores forenses; no equivalen al consolidado de fallecidos por ciudades capitales.",
-  "post_author": "Medicina Legal (Col)",
-  "retrieved_at": "2026-08-13T22:32:48.393164+00:00",
-  "extraction_method": "X oEmbed público"
+  "source_url": "https://www.medicinalegal.gov.co/inicio/-/asset_publisher/t0LBQNMxVOxe/content/plantilla_comunica-1",
+  "report": "Comunicado Oficial No. 08",
+  "cut": "13 de agosto de 2026, 7:00 p. m.",
+  "bodies_received": 260,
+  "victims_identified": 246,
+  "minors_identified": 17,
+  "bodies_delivered": 222,
+  "sex": [{"label": "Mujeres", "value": 139}, {"label": "Hombres", "value": 107}],
+  "age": {
+    "mean": 52.3,
+    "median": 55,
+    "min": "4 meses",
+    "max": "94 años",
+    "bands": [{"label": "0–17", "value": 17}, {"label": "18–29", "value": 30}, {"label": "30–44", "value": 45}, {"label": "45–59", "value": 46}, {"label": "60–74", "value": 60}, {"label": "75+", "value": 48}]
+  },
+  "forensic_units": [{"label": "Cali", "value": 101}, {"label": "Pereira", "value": 92}, {"label": "Quibdó", "value": 12}, {"label": "Buenaventura", "value": 9}, {"label": "Buga", "value": 6}, {"label": "Roldanillo", "value": 6}, {"label": "Manizales", "value": 5}, {"label": "Cartago", "value": 4}, {"label": "Armenia–Calarcá", "value": 3}, {"label": "Sevilla", "value": 3}, {"label": "Tuluá", "value": 2}, {"label": "Belén de Umbría", "value": 1}, {"label": "Popayán", "value": 1}, {"label": "Santander de Quilichao", "value": 1}],
+  "status": "verified_snapshot",
+  "note": "Perfil agregado de las 246 víctimas identificadas. No incluye nombres ni registros individuales.",
+  "methodology": "La unidad forense corresponde al lugar de procesamiento o reporte y no necesariamente al municipio de residencia ni al lugar del fallecimiento.",
+  "retrieved_at": "2026-08-14T00:00:00-05:00",
+  "extraction_method": "Agregación verificada del Comunicado Oficial No. 08"
 }

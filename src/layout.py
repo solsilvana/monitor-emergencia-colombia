@@ -19,18 +19,26 @@ from src.components import (
 
 def _source_cards(data: dict[str, Any]) -> list[html.Div]:
     figures = data.get("figures", {})
-    references = [
+    references: list[dict[str, str]] = [
         {
-            "titulo": "UNGRD · Balance nacional del 13 de agosto, 9:30 a. m.",
+            "titulo": f"UNGRD · Balance nacional del {figures.get('corte_ungrd', 'último corte')}",
             "url": figures.get("ungrd_source_url", "#"),
         },
         {
             "titulo": "Asocapitales · Informe Consolidado No. 22",
             "url": figures.get("asocapitales_pdf_url", figures.get("asocapitales_source_url", "#")),
         },
-    ] + data.get("references", [])[:4]
+    ]
     forensic = data.get("forensics", {})
-    references.append({"titulo": "Medicina Legal · Comunicado Oficial No. 06", "url": forensic.get("source_url", "#")})
+    references.append({"titulo": f"Medicina Legal · {forensic.get('report', 'Comunicado oficial')}", "url": forensic.get("source_url", "#")})
+    for city in data.get("cities", []):
+        if city.get("name") not in {"Cali", "Pereira", "Quibdó"}:
+            continue
+        source_links = city.get("source_links") or [
+            {"label": city.get("source", "Reporte territorial"), "url": city.get("source_url", "#")}
+        ]
+        for source in source_links:
+            references.append({"titulo": f"{city['name']} · {source.get('label', 'Reporte territorial')}", "url": source.get("url", "#")})
     cards = []
     for reference in references:
         if isinstance(reference, dict):

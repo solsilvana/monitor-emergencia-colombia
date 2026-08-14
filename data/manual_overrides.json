@@ -1,23 +1,28 @@
 {
   "enabled": true,
-  "cut_note": "UNGRD: 13 de agosto de 2026, 9:30 a. m. · Asocapitales: 13 de agosto de 2026, 10:00 a. m. · Reporte No. 22",
+  "cut_note": "UNGRD: 14 de agosto de 2026, 6:30 a. m. · Asocapitales: 13 de agosto de 2026, 10:00 a. m. · Territoriales con cortes diferenciados",
   "figures": {
-    "fallecidos_pais": 273,
-    "heridos_pais": 3824,
-    "desaparecidos_pais": 377,
-    "familias_afectadas": 40753,
-    "personas_afectadas": 97515,
-    "viviendas_destruidas": 12584,
-    "viviendas_averiadas": 74873,
-    "edificios_colapsados": 172,
-    "centros_educativos_afectados": 2198,
-    "centros_comunitarios_afectados": 825,
-    "centros_salud_afectados": 216,
-    "acueductos_afectados": 71,
-    "entidades_bancarias_afectadas": 29,
+    "fallecidos_pais": 285,
+    "heridos_pais": 3975,
+    "desaparecidos_pais": 379,
+    "rescatados_pais": 354,
+    "departamentos_afectados": 15,
+    "municipios_afectados": 426,
+    "familias_afectadas": 45523,
+    "personas_afectadas": 102263,
+    "viviendas_destruidas": 12828,
+    "viviendas_averiadas": 73455,
+    "edificios_colapsados": 121,
+    "centros_educativos_afectados": 2205,
+    "centros_comunitarios_afectados": 1208,
+    "centros_salud_afectados": 240,
+    "vias_afectadas": 210,
+    "acueductos_afectados": 73,
+    "puentes_vehiculares_afectados": 44,
+    "puentes_peatonales_afectados": 13,
     "aeropuertos_afectados": 5,
-    "animales_afectados": 242,
-    "animales_rescatados": 99,
+    "animales_afectados": 247,
+    "animales_rescatados": 169,
     "fallecidos": 204,
     "heridos": 1958,
     "desaparecidos": 371,
@@ -30,58 +35,75 @@
     "centros_salud_afectados_capitales": 7,
     "alerta_roja": 5,
     "aeropuertos": 5,
-    "corte_ungrd": "13 de agosto de 2026, 9:30 a. m.",
+    "cities_same_cut": false,
+    "corte_ungrd": "14 de agosto de 2026, 6:30 a. m.",
     "corte_asocapitales": "13 de agosto de 2026, 10:00 a. m. · Reporte No. 22",
-    "ungrd_source_url": "https://x.com/UNGRD/status/2087957127889363443",
+    "ungrd_source_url": "https://x.com/UNGRD/status/2088240278234698096",
     "asocapitales_source_url": "https://www.asocapitales.co/actualidad/noticias/ciudades-seguras/terremoto-en-colombia-suben-273-los-muertos-204-se-registran",
     "asocapitales_pdf_url": "https://www.asocapitales.co/sites/default/files/2026-08/informe-terremoto-capitales-no-22.pdf"
   },
   "cities": {
     "Cali": {
       "deaths": 96,
-      "injured": 1224,
+      "injured": 1401,
       "collapsed": 45,
       "missing": 111,
-      "trapped": 0,
-      "summary": "Cali concentra la mayor afectación entre las capitales: 96 fallecidos, 1.224 heridos, 111 desaparecidos, 107 viviendas colapsadas y 45 estructuras colapsadas.",
-      "source": "Alcaldía de Cali · Bomberos Cali · SDGRD · Reporte No. 22 de Asocapitales"
+      "rescued": 88,
+      "partial_collapses": 46,
+      "structural_damage": 1142,
+      "evacuation_orders": 18,
+      "debris_tons": 8236,
+      "edan_evaluations": 250,
+      "active_rescuers": 1800,
+      "animals_rescued": 55,
+      "animals_dead": 15,
+      "animals_missing": 290,
+      "summary": "Cali reporta 96 fallecidos, 1.401 heridos, 111 desaparecidos y 88 personas rescatadas. El balance incluye 45 colapsos totales, 46 parciales y 1.142 edificaciones con daño estructural.",
+      "cut": "13 de agosto de 2026, 11:00 a. m. · Reporte No. 007",
+      "source": "Alcaldía de Santiago de Cali · Puesto de Mando Unificado",
+      "source_url": "https://x.com/AlcaldiaDeCali/status/2087942876567044271"
     },
     "Pereira": {
-      "deaths": 93,
-      "injured": 259,
-      "collapsed": 66,
+      "deaths": 104,
+      "injured": 578,
+      "collapsed": 86,
+      "collapsed_label": "Edificios colapsados",
       "missing": 260,
-      "trapped": 0,
-      "summary": "Pereira reporta 93 fallecidos, 259 heridos, 260 desaparecidos, 260 personas rescatadas y 66 estructuras colapsadas.",
-      "source": "Alcaldía de Pereira · CMGRD Pereira · Reporte No. 22 de Asocapitales"
+      "rescued": 260,
+      "summary": "El balance territorial asociado a Pereira combina el reporte departamental de Risaralda —104 fallecidos, 578 heridos, 260 desaparecidos, 260 rescatados y 86 edificios colapsados— con el reporte del PMU de Pereira.",
+      "cut": "Risaralda: 13 de agosto de 2026 · Pereira PMU: 13 de agosto de 2026",
+      "source": "Gobernación de Risaralda · Alcaldía de Pereira / PMU",
+      "source_url": "https://x.com/Gob_Risaralda/status/2088051877384503591",
+      "source_links": [
+        {"label": "Gobernación de Risaralda", "url": "https://x.com/Gob_Risaralda/status/2088051877384503591"},
+        {"label": "Alcaldía de Pereira / PMU", "url": "https://www.facebook.com/reel/2345241729557231"}
+      ]
     },
     "Quibdó": {
-      "deaths": 9,
-      "injured": 119,
-      "collapsed": 125,
-      "missing": 0,
-      "trapped": 0,
-      "summary": "Quibdó registra 9 fallecidos, 119 heridos, 100 viviendas colapsadas, 2.125 viviendas averiadas y 125 estructuras colapsadas.",
-      "source": "Gobernación del Chocó · CMGRD · Alcaldía de Quibdó · Reporte No. 22 de Asocapitales"
+      "deaths": 14,
+      "injured": 139,
+      "collapsed": 468,
+      "collapsed_label": "Viviendas destruidas",
+      "missing": 4,
+      "summary": "El balance territorial asociado a Quibdó incorpora el Reporte de Situación No. 9 del Chocó: 14 fallecidos, 139 heridos, 4 desaparecidos, 468 viviendas destruidas y 3.199 viviendas averiadas en el departamento.",
+      "cut": "Chocó: 11 de agosto de 2026, 9:05 p. m. · Quibdó/Asocapitales: 13 de agosto de 2026, 10:00 a. m.",
+      "source": "Gobernación del Chocó · Asocapitales / fuentes territoriales",
+      "source_url": "https://x.com/GobChoco/status/2087363367245664321",
+      "source_links": [
+        {"label": "Gobernación del Chocó", "url": "https://x.com/GobChoco/status/2087363367245664321"},
+        {"label": "Asocapitales · Reporte No. 22", "url": "https://www.asocapitales.co/actualidad/noticias/ciudades-seguras/terremoto-en-colombia-suben-273-los-muertos-204-se-registran"}
+      ]
     },
     "Manizales": {
-      "deaths": 6,
-      "injured": 182,
-      "collapsed": 20,
-      "missing": 0,
-      "trapped": 0,
-      "summary": "Manizales reporta 6 fallecidos, 182 heridos, 4.000 damnificados, 1.449 viviendas y 20 estructuras colapsadas.",
-      "source": "Alcaldía de Manizales · UGR · Reporte No. 22 de Asocapitales"
+      "cut": "13 de agosto de 2026, 10:00 a. m. · Reporte No. 22",
+      "source_url": "https://www.asocapitales.co/actualidad/noticias/ciudades-seguras/terremoto-en-colombia-suben-273-los-muertos-204-se-registran"
     },
     "Armenia": {
-      "deaths": 0,
-      "injured": 174,
-      "collapsed": 69,
-      "missing": 0,
-      "trapped": 0,
-      "summary": "Armenia no reporta fallecidos; registra 174 heridos, 54 viviendas averiadas y 69 estructuras colapsadas.",
-      "source": "CMGRD · Alcaldía de Armenia · Reporte No. 22 de Asocapitales"
+      "cut": "13 de agosto de 2026, 10:00 a. m. · Reporte No. 22",
+      "source_url": "https://www.asocapitales.co/actualidad/noticias/ciudades-seguras/terremoto-en-colombia-suben-273-los-muertos-204-se-registran"
     },
-    "Popayán": {}
+    "Popayán": {
+      "cut": "Corte territorial disponible en la fuente base"
+    }
   }
 }

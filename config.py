@@ -23,16 +23,9 @@ ASOCAPITALES_URL = (
     "https://www.asocapitales.co/actualidad/noticias/ciudades-seguras/"
     "terremoto-en-colombia-suben-273-los-muertos-204-se-registran"
 )
-MEDLEGAL_X_URL = os.getenv(
-    "MEDLEGAL_X_URL",
-    "https://x.com/MedLegalColombi/status/2087762807332757803",
-)
-MEDLEGAL_OEMBED_URL = (
-    "https://publish.twitter.com/oembed?url=" + MEDLEGAL_X_URL.replace("x.com", "twitter.com")
-)
-MEDLEGAL_BULLETIN_URL = (
-    "https://www.medicinalegal.gov.co/noticias/-/asset_publisher/"
-    "vLcVEedo8qgD/content/comunicado-oficial-no-05"
+MEDLEGAL_REPORT_URL = (
+    "https://www.medicinalegal.gov.co/inicio/-/asset_publisher/"
+    "t0LBQNMxVOxe/content/plantilla_comunica-1"
 )
 
 # En el computador personal se intenta actualizar al iniciar. Si no hay

@@ -34,10 +34,12 @@ class LocalDataTests(unittest.TestCase):
 
     def test_official_reports_have_separate_cuts_and_totals(self):
         figures = load_data()["figures"]
-        self.assertEqual(figures["fallecidos_pais"], 273)
-        self.assertEqual(figures["heridos_pais"], 3824)
-        self.assertEqual(figures["desaparecidos_pais"], 377)
+        self.assertEqual(figures["fallecidos_pais"], 285)
+        self.assertEqual(figures["heridos_pais"], 3975)
+        self.assertEqual(figures["desaparecidos_pais"], 379)
+        self.assertEqual(figures["rescatados_pais"], 354)
         self.assertEqual(figures["fallecidos"], 204)
+        self.assertFalse(figures["cities_same_cut"])
         self.assertIn("UNGRD", figures["ungrd_source_url"])
         self.assertIn("asocapitales", figures["asocapitales_source_url"])
 
@@ -48,6 +50,24 @@ class LocalDataTests(unittest.TestCase):
         self.assertGreaterEqual(forensic["bodies_received"], forensic["victims_identified"])
         self.assertGreaterEqual(forensic["victims_identified"], forensic["bodies_delivered"])
         self.assertNotEqual(forensic["victims_identified"], data["figures"]["fallecidos"])
+        self.assertEqual(forensic["victims_identified"], 246)
+        self.assertEqual(sum(item["value"] for item in forensic["sex"]), 246)
+        self.assertEqual(sum(item["value"] for item in forensic["age"]["bands"]), 246)
+        self.assertEqual(sum(item["value"] for item in forensic["forensic_units"]), 246)
+        self.assertEqual(forensic["age"]["bands"][0]["value"], forensic["minors_identified"])
+
+    def test_territorial_sources_are_integrated_in_city_module(self):
+        data = load_data()
+        cities = {city["name"]: city for city in data["cities"]}
+        self.assertEqual(cities["Cali"]["injured"], 1401)
+        self.assertEqual(cities["Cali"]["rescued"], 88)
+        self.assertEqual(cities["Pereira"]["deaths"], 104)
+        self.assertEqual(cities["Pereira"]["injured"], 578)
+        self.assertEqual(cities["Pereira"]["rescued"], 260)
+        self.assertEqual(cities["Quibdó"]["deaths"], 14)
+        self.assertEqual(cities["Quibdó"]["injured"], 139)
+        self.assertGreaterEqual(len(cities["Pereira"]["source_links"]), 2)
+        self.assertGreaterEqual(len(cities["Quibdó"]["source_links"]), 2)
 
 
 if __name__ == "__main__":

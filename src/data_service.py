@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import datetime as dt
 import hashlib
-import html as html_lib
 import json
 import re
 from copy import deepcopy
@@ -23,9 +22,7 @@ from config import (
     FORENSIC_DATA_FILE,
     GEOJSON_FILE,
     LATEST_DATA_FILE,
-    MEDLEGAL_BULLETIN_URL,
-    MEDLEGAL_OEMBED_URL,
-    MEDLEGAL_X_URL,
+    MEDLEGAL_REPORT_URL,
     OVERRIDES_FILE,
     REQUEST_TIMEOUT,
     RUN_LOG_FILE,
@@ -242,53 +239,27 @@ def apply_manual_overrides(data: dict[str, Any]) -> dict[str, Any]:
 def load_forensic_data() -> dict[str, Any]:
     if not FORENSIC_DATA_FILE.exists():
         return {}
-    return json.loads(FORENSIC_DATA_FILE.read_text(encoding="utf-8"))
-
-
-def refresh_forensic_from_x() -> dict[str, Any]:
-    """Actualiza los indicadores forenses publicados por Medicina Legal en X.
-
-    El endpoint oEmbed es público y devuelve el texto del post sin exigir una
-    cuenta ni ejecutar JavaScript. El archivo anterior se conserva si el texto
-    deja de incluir alguno de los tres indicadores esperados.
-    """
-    response = requests.get(
-        MEDLEGAL_OEMBED_URL,
-        timeout=REQUEST_TIMEOUT,
-        headers={"User-Agent": "SolSilvanaZB-Emergency-Dashboard/2.1"},
-    )
-    response.raise_for_status()
-    payload = response.json()
-    plain_text = html_lib.unescape(re.sub(r"<[^>]+>", " ", payload.get("html", "")))
-    plain_text = re.sub(r"\s+", " ", plain_text).strip()
-    patterns = {
-        "bodies_received": r"cuerpos\s+recibidos\s+(\d[\d.]*)",
-        "victims_identified": r"(\d[\d.]*)\s+identificados",
-        "bodies_delivered": r"(\d[\d.]*)\s+entregados",
-    }
-    extracted: dict[str, int] = {}
-    for field, pattern in patterns.items():
-        match = re.search(pattern, plain_text, flags=re.IGNORECASE)
-        if not match:
-            raise DataValidationError(f"Medicina Legal: no se pudo extraer {field}.")
-        extracted[field] = int(match.group(1).replace(".", ""))
-
-    previous = load_forensic_data()
-    result = {
-        **previous,
-        **extracted,
-        "source": "Instituto Nacional de Medicina Legal y Ciencias Forenses",
-        "source_url": MEDLEGAL_X_URL,
-        "bulletin_url": MEDLEGAL_BULLETIN_URL,
-        "post_author": payload.get("author_name", "Medicina Legal (Col)"),
-        "retrieved_at": dt.datetime.now(dt.timezone.utc).isoformat(),
-        "status": "updated",
-        "extraction_method": "X oEmbed público",
-    }
-    FORENSIC_DATA_FILE.write_text(
-        json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    result = json.loads(FORENSIC_DATA_FILE.read_text(encoding="utf-8"))
+    result["source_url"] = MEDLEGAL_REPORT_URL
     return result
+
+
+def validate_forensic_snapshot(forensic: dict[str, Any]) -> list[str]:
+    """Valida el corte agregado de Medicina Legal sin exponer registros nominales."""
+    errors: list[str] = []
+    identified = forensic.get("victims_identified")
+    if not isinstance(identified, int) or identified < 0:
+        return ["Medicina Legal: victims_identified no es un entero válido."]
+    for field in ("bodies_received", "bodies_delivered", "minors_identified"):
+        if not isinstance(forensic.get(field), int) or forensic[field] < 0:
+            errors.append(f"Medicina Legal: {field} no es un entero válido.")
+    for field in ("sex", "forensic_units"):
+        if sum(item.get("value", 0) for item in forensic.get(field, [])) != identified:
+            errors.append(f"Medicina Legal: {field} no suma {identified} identificados.")
+    age_bands = forensic.get("age", {}).get("bands", [])
+    if sum(item.get("value", 0) for item in age_bands) != identified:
+        errors.append(f"Medicina Legal: los grupos de edad no suman {identified} identificados.")
+    return errors
 
 
 def refresh_from_source() -> dict[str, Any]:
@@ -316,12 +287,9 @@ def refresh_from_source() -> dict[str, Any]:
         json.dumps(enriched_geo, ensure_ascii=False, separators=(",", ":")) + "\n",
         encoding="utf-8",
     )
-    try:
-        forensic = refresh_forensic_from_x()
-        forensic_status = "updated"
-    except Exception as exc:
-        forensic = load_forensic_data()
-        forensic_status = f"cache: {type(exc).__name__}"
+    forensic = load_forensic_data()
+    forensic_errors = validate_forensic_snapshot(forensic)
+    forensic_status = "verified_snapshot" if not forensic_errors else "invalid_snapshot"
     run_log = {
         "status": "updated",
         "updated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
@@ -330,7 +298,7 @@ def refresh_from_source() -> dict[str, Any]:
         "cities": len(normalized["cities"]),
         "points": len(normalized["points"]),
         "departments": len(enriched_geo["features"]),
-        "validation_errors": [],
+        "validation_errors": forensic_errors,
         "forensic_source": forensic_status,
         "forensic_identified": forensic.get("victims_identified"),
     }
@@ -343,18 +311,15 @@ def safe_refresh() -> dict[str, Any]:
     try:
         return refresh_from_source()
     except Exception as exc:  # La aplicación debe seguir funcionando sin internet.
-        try:
-            forensic = refresh_forensic_from_x()
-            forensic_status = "updated"
-        except Exception as forensic_exc:
-            forensic = load_forensic_data()
-            forensic_status = f"cache: {type(forensic_exc).__name__}"
+        forensic = load_forensic_data()
+        forensic_errors = validate_forensic_snapshot(forensic)
+        forensic_status = "verified_snapshot" if not forensic_errors else "invalid_snapshot"
         run_log = {
             "status": "offline_cache",
             "updated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
             "source": ECONOMIA_PIPOL_URL,
             "error": f"{type(exc).__name__}: {exc}",
-            "validation_errors": [],
+            "validation_errors": forensic_errors,
             "forensic_source": forensic_status,
             "forensic_identified": forensic.get("victims_identified"),
         }
@@ -384,6 +349,3 @@ def load_run_log() -> dict[str, Any]:
 def copy_snapshot(destination: Path) -> None:
     """Utilidad para respaldar manualmente el último corte normalizado."""
     destination.write_text(LATEST_DATA_FILE.read_text(encoding="utf-8"), encoding="utf-8")
-    MEDLEGAL_BULLETIN_URL,
-    MEDLEGAL_OEMBED_URL,
-    MEDLEGAL_X_URL,
