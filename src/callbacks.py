@@ -31,7 +31,11 @@ def register_callbacks(app: Any) -> None:
         State("city-dropdown", "value"),
         prevent_initial_call=True,
     )
-    def choose_city_from_map(_: list[int | None], current_city: str):
+    def choose_city_from_map(clicks: list[int | None], current_city: str):
+        # Al reconstruir el mapa, Dash vuelve a registrar los marcadores con
+        # n_clicks=None. Eso no debe modificar el valor escogido en el filtro.
+        if not any(isinstance(value, int) and value > 0 for value in (clicks or [])):
+            return no_update
         trigger = ctx.triggered_id
         if isinstance(trigger, dict) and trigger.get("index"):
             return trigger["index"]
@@ -39,24 +43,46 @@ def register_callbacks(app: Any) -> None:
 
     @app.callback(
         Output("kpi-container", "children"),
-        Output("map-container", "children"),
-        Output("city-detail", "children"),
-        Output("point-list", "children"),
         Output("cut-value", "children"),
+        Input("data-version", "data"),
+    )
+    def render_summary(_: str):
+        data = load_data()
+        return kpi_cards(data), data["meta"].get("cut", "Sin corte informado")
+
+    @app.callback(
+        Output("map-container", "children"),
+        Input("layer-filter", "value"),
+        Input("data-version", "data"),
+    )
+    def render_map(layer: str, _: str):
+        data = load_data()
+        geojson = load_geojson()
+        # El mapa no se reconstruye al cambiar el desplegable. Así los
+        # marcadores no pueden sobrescribir accidentalmente la selección.
+        return map_component(data, geojson, layer, None)
+
+    @app.callback(
+        Output("city-detail", "children"),
+        Input("city-dropdown", "value"),
+        Input("data-version", "data"),
+    )
+    def render_city(selected_city: str, _: str):
+        data = load_data()
+        available = [ALL_CITIES] + [city["name"] for city in data["cities"]]
+        if selected_city not in available:
+            selected_city = ALL_CITIES
+        return city_detail(data, selected_city)
+
+    @app.callback(
+        Output("point-list", "children"),
         Input("city-dropdown", "value"),
         Input("layer-filter", "value"),
         Input("data-version", "data"),
     )
-    def render_dashboard(selected_city: str, layer: str, _: str):
+    def render_points(selected_city: str, layer: str, _: str):
         data = load_data()
-        geojson = load_geojson()
         available = [ALL_CITIES] + [city["name"] for city in data["cities"]]
         if selected_city not in available:
             selected_city = ALL_CITIES
-        return (
-            kpi_cards(data),
-            map_component(data, geojson, layer, selected_city),
-            city_detail(data, selected_city),
-            point_list(data, layer, selected_city),
-            data["meta"].get("cut", "Sin corte informado"),
-        )
+        return point_list(data, layer, selected_city)

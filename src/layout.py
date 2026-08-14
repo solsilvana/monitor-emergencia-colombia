@@ -28,7 +28,7 @@ def _source_cards(data: dict[str, Any]) -> list[html.Div]:
             "titulo": "Asocapitales · Informe Consolidado No. 22",
             "url": figures.get("asocapitales_pdf_url", figures.get("asocapitales_source_url", "#")),
         },
-    ]
+    ] + data.get("references", [])[:4]
     forensic = data.get("forensics", {})
     references.append({"titulo": f"Medicina Legal · {forensic.get('report', 'Comunicado oficial')}", "url": forensic.get("source_url", "#")})
     for city in data.get("cities", []):
@@ -148,7 +148,6 @@ def build_layout(data: dict[str, Any], geojson: dict[str, Any], run_log: dict[st
                         ],
                         className="section-block map-section",
                     ),
-                    forensic_panel(data),
                     html.Section(
                         [html.Div([html.Span("03"), html.Div([html.H2("Puntos habilitados"), html.P("Direcciones publicadas según la capa y ciudad seleccionadas.")])], className="section-heading"), html.Div(point_list(data, "impact", ALL_CITIES), id="point-list")],
                         className="section-block",
@@ -160,6 +159,7 @@ def build_layout(data: dict[str, Any], geojson: dict[str, Any], run_log: dict[st
                         ],
                         className="section-block donation-section",
                     ),
+                    forensic_panel(data),
                     html.Section(
                         [
                             html.Div([html.Span("05"), html.Div([html.H2("Fuentes y trazabilidad"), html.P("Datos recopilados de varias fuentes según disponibilidad.")])], className="section-heading"),

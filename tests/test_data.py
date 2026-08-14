@@ -12,6 +12,13 @@ class LocalDataTests(unittest.TestCase):
         self.assertGreaterEqual(len(data["cities"]), 5)
         self.assertGreaterEqual(len(data["points"]), 1)
 
+    def test_original_aid_and_blood_points_are_preserved(self):
+        points = load_data()["points"]
+        self.assertGreaterEqual(len(points), 34)
+        point_types = {point.get("type") for point in points}
+        self.assertIn("sangre", point_types)
+        self.assertTrue(any(point_type != "sangre" for point_type in point_types))
+
     def test_colombia_layer_has_departments_and_interior_labels(self):
         geojson = load_geojson()
         self.assertEqual(geojson["type"], "FeatureCollection")
