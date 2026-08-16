@@ -54,7 +54,7 @@ def kpi_cards(data: dict[str, Any]) -> list[html.Article]:
     figures = data["figures"]
     forensic = data.get("forensics", {})
     cards = [
-        ("Fallecidos en Colombia", figures.get("fallecidos_pais", figures.get("fallecidos")), "UNGRD · corte 14 ago, 6:30 a. m.", "people", "cyan"),
+        ("Fallecidos en Colombia", figures.get("fallecidos_pais", figures.get("fallecidos")), "UNGRD · corte 15 ago, 6:30 p. m.", "people", "cyan"),
         ("Personas heridas", figures.get("heridos_pais", figures.get("heridos")), "UNGRD · consolidado nacional", "medical", "purple"),
         ("Personas desaparecidas", figures.get("desaparecidos_pais", figures.get("desaparecidos")), "Fiscalía General · reportado por UNGRD", "alert", "red"),
         ("Fallecidos en capitales", figures.get("fallecidos"), "Asocapitales · 13 ago, 10:00 a. m.", "pin", "blue"),
