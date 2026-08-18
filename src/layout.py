@@ -25,7 +25,7 @@ def _source_cards(data: dict[str, Any]) -> list[html.Div]:
             "url": figures.get("ungrd_source_url", "#"),
         },
         {
-            "titulo": "Asocapitales · Informe Consolidado No. 22",
+            "titulo": f"Asocapitales · {figures.get('corte_asocapitales', 'último informe consolidado')}",
             "url": figures.get("asocapitales_pdf_url", figures.get("asocapitales_source_url", "#")),
         },
     ] + data.get("references", [])[:4]

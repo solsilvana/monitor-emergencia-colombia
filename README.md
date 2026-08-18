@@ -104,7 +104,7 @@ El tablero fuente incluye en su HTML dos objetos JSON:
 
 Python los extrae sin ejecutar código de la página. El archivo nuevo solo reemplaza al anterior si supera las validaciones mínimas.
 
-El módulo de Medicina Legal usa un corte agregado verificado del **Comunicado Oficial No. 11**. El archivo local conserva:
+El módulo de Medicina Legal usa el corte agregado verificado del **Comunicado Oficial No. 13**, del 17 de agosto de 2026 a la 1:00 p. m. El archivo local conserva:
 
 - cuerpos recibidos;
 - víctimas identificadas;
@@ -134,14 +134,14 @@ Edite `data/manual_overrides.json`:
 ```json
 {
   "enabled": true,
-  "cut_note": "UNGRD · corte 15 de agosto de 2026, 6:30 p. m.",
+  "cut_note": "UNGRD · corte 16 de agosto de 2026, 6:30 p. m.",
   "figures": {
-    "fallecidos": 204
+    "fallecidos_pais": 287
   },
   "cities": {
     "Cali": {
-      "deaths": 111,
-      "injured": 1416
+      "deaths": 132,
+      "injured": 1485
     }
   }
 }
@@ -174,7 +174,7 @@ Configuración manual equivalente:
 - Asocapitales y administraciones territoriales: fuentes citadas por el tablero base.
 - Servicio Geológico Colombiano: información del evento sísmico.
 - UNGRD y Cruz Roja Colombiana: reportes de respuesta disponibles.
-- Instituto Nacional de Medicina Legal y Ciencias Forenses: Comunicado Oficial No. 11.
+- Instituto Nacional de Medicina Legal y Ciencias Forenses: Comunicado Oficial No. 13.
 - Alcaldía de Santiago de Cali y Alcaldía de Pereira: balances de los puestos de mando unificado.
 - Gobernaciones de Risaralda y Chocó: reportes departamentales con cortes independientes.
 

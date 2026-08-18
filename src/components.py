@@ -53,12 +53,15 @@ def line_icon(name: str, class_name: str = "line-icon", color: str | None = None
 def kpi_cards(data: dict[str, Any]) -> list[html.Article]:
     figures = data["figures"]
     forensic = data.get("forensics", {})
+    ungrd_cut = figures.get("corte_ungrd", "último corte")
+    missing_cut = figures.get("corte_desaparecidos_pais", ungrd_cut)
+    asocapitales_cut = figures.get("corte_asocapitales", "último corte")
     cards = [
-        ("Fallecidos en Colombia", figures.get("fallecidos_pais", figures.get("fallecidos")), "UNGRD · corte 15 ago, 6:30 p. m.", "people", "cyan"),
-        ("Personas heridas", figures.get("heridos_pais", figures.get("heridos")), "UNGRD · consolidado nacional", "medical", "purple"),
-        ("Personas desaparecidas", figures.get("desaparecidos_pais", figures.get("desaparecidos")), "Fiscalía General · reportado por UNGRD", "alert", "red"),
-        ("Fallecidos en capitales", figures.get("fallecidos"), "Asocapitales · 13 ago, 10:00 a. m.", "pin", "blue"),
-        ("Víctimas identificadas", forensic.get("victims_identified"), "Medicina Legal · indicador forense", "forensic", "magenta"),
+        ("Fallecidos en Colombia", figures.get("fallecidos_pais", figures.get("fallecidos")), f"UNGRD · {ungrd_cut}", "people", "cyan"),
+        ("Personas heridas", figures.get("heridos_pais", figures.get("heridos")), f"UNGRD · {ungrd_cut}", "medical", "purple"),
+        ("Personas desaparecidas", figures.get("desaparecidos_pais", figures.get("desaparecidos")), f"Último valor disponible · {missing_cut}", "alert", "red"),
+        ("Fallecidos en capitales", figures.get("fallecidos"), f"Asocapitales · {asocapitales_cut}", "pin", "blue"),
+        ("Víctimas identificadas", forensic.get("victims_identified"), f"Medicina Legal · {forensic.get('cut', 'último corte validado')}", "forensic", "magenta"),
         ("Capitales en alerta roja", figures.get("alerta_roja"), "Respuesta territorial activa", "building", "green"),
     ]
     return [
@@ -74,26 +77,28 @@ def national_balance_panel(data: dict[str, Any]) -> html.Section:
     """Presenta el balance nacional del corte oficial de la UNGRD."""
     figures = data["figures"]
     metrics = [
-        ("Familias afectadas", figures.get("familias_afectadas")),
-        ("Personas afectadas", figures.get("personas_afectadas")),
-        ("Departamentos afectados", figures.get("departamentos_afectados")),
-        ("Municipios afectados", figures.get("municipios_afectados")),
-        ("Personas rescatadas", figures.get("rescatados_pais")),
-        ("Viviendas destruidas", figures.get("viviendas_destruidas")),
-        ("Viviendas averiadas", figures.get("viviendas_averiadas")),
-        ("Edificios colapsados", figures.get("edificios_colapsados")),
-        ("Centros educativos", figures.get("centros_educativos_afectados")),
-        ("Centros comunitarios", figures.get("centros_comunitarios_afectados")),
-        ("Centros de salud", figures.get("centros_salud_afectados")),
-        ("Vías afectadas", figures.get("vias_afectadas")),
-        ("Acueductos", figures.get("acueductos_afectados")),
-        ("Puentes vehiculares", figures.get("puentes_vehiculares_afectados")),
-        ("Puentes peatonales", figures.get("puentes_peatonales_afectados")),
-        ("Aeropuertos", figures.get("aeropuertos_afectados")),
-        ("Animales afectados", figures.get("animales_afectados")),
-        ("Animales rescatados", figures.get("animales_rescatados")),
+        ("familias_afectadas", "Familias afectadas", figures.get("familias_afectadas")),
+        ("personas_afectadas", "Personas afectadas", figures.get("personas_afectadas")),
+        ("departamentos_afectados", "Departamentos afectados", figures.get("departamentos_afectados")),
+        ("municipios_afectados", "Municipios afectados", figures.get("municipios_afectados")),
+        ("rescatados_pais", "Personas rescatadas", figures.get("rescatados_pais")),
+        ("viviendas_destruidas", "Viviendas destruidas", figures.get("viviendas_destruidas")),
+        ("viviendas_averiadas", "Viviendas averiadas", figures.get("viviendas_averiadas")),
+        ("edificios_colapsados", "Edificios colapsados", figures.get("edificios_colapsados")),
+        ("centros_educativos_afectados", "Centros educativos", figures.get("centros_educativos_afectados")),
+        ("centros_comunitarios_afectados", "Centros comunitarios", figures.get("centros_comunitarios_afectados")),
+        ("centros_salud_afectados", "Centros de salud", figures.get("centros_salud_afectados")),
+        ("vias_afectadas", "Vías afectadas", figures.get("vias_afectadas")),
+        ("acueductos_afectados", "Acueductos", figures.get("acueductos_afectados")),
+        ("puentes_vehiculares_afectados", "Puentes vehiculares", figures.get("puentes_vehiculares_afectados")),
+        ("puentes_peatonales_afectados", "Puentes peatonales", figures.get("puentes_peatonales_afectados")),
+        ("aeropuertos_afectados", "Aeropuertos", figures.get("aeropuertos_afectados")),
+        ("animales_afectados", "Animales afectados", figures.get("animales_afectados")),
+        ("animales_rescatados", "Animales rescatados", figures.get("animales_rescatados")),
     ]
-    visible_metrics = [(label, value) for label, value in metrics if value is not None]
+    visible_metrics = [(key, label, value) for key, label, value in metrics if value is not None]
+    updated_fields = set(figures.get("ungrd_updated_fields", []))
+    previous_cut = figures.get("corte_ungrd_anterior", "corte anterior")
     return html.Section(
         [
             html.Div(
@@ -111,8 +116,11 @@ def national_balance_panel(data: dict[str, Any]) -> html.Section:
             ),
             html.Div(
                 [
-                    html.Div([html.Strong(format_number(value)), html.Span(label)])
-                    for label, value in visible_metrics
+                    html.Div(
+                        [html.Strong(format_number(value)), html.Span(label)]
+                        + ([] if key in updated_fields else [html.Small(f"Último valor: {previous_cut}")])
+                    )
+                    for key, label, value in visible_metrics
                 ],
                 className="official-grid",
             ),

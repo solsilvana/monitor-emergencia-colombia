@@ -1,33 +1,33 @@
 {
   "source": "Instituto Nacional de Medicina Legal y Ciencias Forenses",
-  "source_url": "https://www.medicinalegal.gov.co/inicio/-/asset_publisher/t0LBQNMxVOxe/content/plantilla_comunica-6?_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_t0LBQNMxVOxe_assetEntryId=1330714",
-  "report": "Comunicado Oficial No. 11",
-  "cut": "15 de agosto de 2026, 4:00 p. m.",
-  "bodies_received": 287,
-  "victims_identified": 279,
-  "minors_identified": 21,
-  "bodies_delivered": 268,
+  "source_url": "https://www.medicinalegal.gov.co/inicio/-/asset_publisher/t0LBQNMxVOxe/content/plantilla_comunica-8?_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_t0LBQNMxVOxe_assetEntryId=1332405",
+  "report": "Comunicado Oficial No. 13",
+  "cut": "17 de agosto de 2026, 1:00 p. m.",
+  "bodies_received": 304,
+  "victims_identified": 300,
+  "minors_identified": 22,
+  "bodies_delivered": 293,
   "sex": [
-    {"label": "Mujeres", "value": 157},
-    {"label": "Hombres", "value": 122}
+    {"label": "Mujeres", "value": 171},
+    {"label": "Hombres", "value": 129}
   ],
   "age": {
-    "mean": 52.2,
+    "mean": 52.5,
     "median": 55,
     "min": "4 meses",
-    "max": "94 años",
+    "max": "102 años",
     "bands": [
-      {"label": "0–17", "value": 21},
-      {"label": "18–29", "value": 35},
-      {"label": "30–44", "value": 48},
-      {"label": "45–59", "value": 51},
-      {"label": "60–74", "value": 69},
-      {"label": "75+", "value": 55}
+      {"label": "0–17", "value": 22},
+      {"label": "18–29", "value": 38},
+      {"label": "30–44", "value": 49},
+      {"label": "45–59", "value": 59},
+      {"label": "60–74", "value": 72},
+      {"label": "75+", "value": 60}
     ]
   },
   "forensic_units": [
-    {"label": "Cali", "value": 124},
-    {"label": "Pereira", "value": 102},
+    {"label": "Cali", "value": 139},
+    {"label": "Pereira", "value": 107},
     {"label": "Quibdó", "value": 12},
     {"label": "Buenaventura", "value": 9},
     {"label": "Buga", "value": 6},
@@ -36,14 +36,14 @@
     {"label": "Cartago", "value": 4},
     {"label": "Armenia–Calarcá", "value": 3},
     {"label": "Sevilla", "value": 3},
-    {"label": "Tuluá", "value": 2},
+    {"label": "Tuluá", "value": 3},
     {"label": "Belén de Umbría", "value": 1},
     {"label": "Popayán", "value": 1},
     {"label": "Santander de Quilichao", "value": 1}
   ],
   "status": "verified_snapshot",
-  "note": "Perfil agregado de las 279 víctimas identificadas. No incluye nombres ni registros individuales.",
+  "note": "Perfil agregado de las 300 víctimas identificadas. No incluye nombres ni registros individuales.",
   "methodology": "La unidad forense corresponde al lugar de procesamiento o reporte y no necesariamente al municipio de residencia ni al lugar del fallecimiento.",
-  "retrieved_at": "2026-08-16T08:30:00-05:00",
-  "extraction_method": "Agregación verificada del Comunicado Oficial No. 11"
+  "retrieved_at": "2026-08-17T13:00:00-05:00",
+  "extraction_method": "Agregación verificada del Comunicado Oficial No. 13"
 }

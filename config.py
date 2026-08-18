@@ -25,9 +25,9 @@ ASOCAPITALES_URL = (
 )
 MEDLEGAL_REPORT_URL = (
     "https://www.medicinalegal.gov.co/inicio/-/asset_publisher/"
-    "t0LBQNMxVOxe/content/plantilla_comunica-6"
+    "t0LBQNMxVOxe/content/plantilla_comunica-8"
     "?_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_"
-    "t0LBQNMxVOxe_assetEntryId=1330714"
+    "t0LBQNMxVOxe_assetEntryId=1332405"
 )
 
 # En el computador personal se intenta actualizar al iniciar. Si no hay
