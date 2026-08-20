@@ -24,10 +24,10 @@ ASOCAPITALES_URL = (
     "terremoto-en-colombia-suben-273-los-muertos-204-se-registran"
 )
 MEDLEGAL_REPORT_URL = (
-    "https://www.medicinalegal.gov.co/inicio/-/asset_publisher/"
-    "t0LBQNMxVOxe/content/plantilla_comunica-8"
+    "https://www.medicinalegal.gov.co/noticias/-/asset_publisher/"
+    "vLcVEedo8qgD/content/plantilla_comunic-10"
     "?_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_"
-    "t0LBQNMxVOxe_assetEntryId=1332405"
+    "vLcVEedo8qgD_assetEntryId=1333742"
 )
 
 # En el computador personal se intenta actualizar al iniciar. Si no hay

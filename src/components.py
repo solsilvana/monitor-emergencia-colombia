@@ -337,6 +337,14 @@ def forensic_panel(data: dict[str, Any]) -> html.Section:
     age = forensic.get("age", {})
     age_rows = age.get("bands", [])
     unit_rows = forensic.get("forensic_units", [])
+    foreign_identified = forensic.get("foreign_citizens_identified")
+    profile_note = (
+        "Perfil agregado de las víctimas identificadas por Medicina Legal. "
+        "No se publican nombres ni registros individuales y este universo no equivale "
+        "al consolidado territorial de fallecidos de la UNGRD."
+    )
+    if foreign_identified is not None:
+        profile_note += f" El comunicado registra además {format_number(foreign_identified)} ciudadanos extranjeros identificados."
 
     def distribution_rows(items: list[dict[str, Any]], color_class: str) -> html.Div:
         return html.Div(
@@ -355,7 +363,7 @@ def forensic_panel(data: dict[str, Any]) -> html.Section:
 
     return html.Section([
         html.Div([html.Div(line_icon("forensic"), className="forensic-icon"), html.Div([html.Span("MÓDULO FORENSE"), html.H2("Identificación y entrega digna")])], className="forensic-heading"),
-        html.P("Perfil agregado de las víctimas identificadas por Medicina Legal. No se publican nombres ni registros individuales y este universo no equivale al consolidado territorial de fallecidos de la UNGRD.", className="forensic-method"),
+        html.P(profile_note, className="forensic-method"),
         html.Div([html.Div([html.Strong(format_number(value)), html.Span(label)]) for label, value in metrics], className="forensic-grid"),
         html.Div(
             [
